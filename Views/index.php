@@ -25,7 +25,7 @@
             </ul>
         </li>
         <li>
-            <a href="#">Nómina General</a>
+            <a href="#">Nómina Mundial</a>
             <ul>
                 <li><a href="#">Pagos</a></li>
                 <li><a href="#">Deducciones</a></li>
