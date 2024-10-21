@@ -1,11 +1,11 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Times New Roman', sans-serif;
     background-color: #ecf0f1;
     margin: 0;
 }
 
 header {
-    background-color: #FF0000;
+    background-color: #2980b9;
     padding: 15px;
     color: white;
     text-align: center;
@@ -15,73 +15,134 @@ header h1 {
     margin: 0;
 }
 
-nav {
-    background-color: #2c3e50;
-    padding: 0;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    position: relative;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: white;
-    padding: 15px 20px;
-    text-decoration: none;
-    display: block;
+.menu-toggle {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #333;
     cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 1001;
 }
 
-nav ul li:hover > a {
-    background-color: #1abc9c;
+#container {
+    display: flex; /* Usar flexbox para alinear el menú y el contenido */
+    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
+    position: relative; /* Necesario para el pseudo-elemento en main */
 }
 
-nav ul li ul {
+/* Estilo para el aside */
+aside {
+    position: fixed;
+    left: -250px; /* Oculto inicialmente */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #2980b9; /* Color de fondo del menú */
+    transition: left 0.3s ease; /* Transición suave para mostrar/ocultar el menú */
+    z-index: 1000;
+}
+
+/* Estilo cuando el menú está visible */
+aside.active {
+    left: 0; /* Muestra el menú desplazándolo hacia la derecha */
+}
+
+aside nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside nav ul li {
+    position: relative; /* Necesario para que el submenú sea posicionado dentro del contenedor principal */
+}
+
+aside nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #f7f9fc;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: #2980b9;
+}
+
+aside nav ul li a:hover {
+    background-color: #5ac54a;
+}
+
+/* Submenú oculto por defecto */
+aside nav ul li ul {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #34495e;
+    left: 100%;
+    top: 0;
     padding: 0;
-    list-style: none;
-    z-index: 1;
-    min-width: 200px;
+    background-color: #e3e852; /* Fondo del submenú */
+    z-index: 1000;
 }
 
-nav ul li:hover > ul {
+aside nav ul li ul li a {
+    width: 200px;
+    padding: 10px 15px;
+    font-size: 16px;
+    text-transform: none;
+}
+
+aside nav ul li ul li a:hover {
+    background-color: #5ac54a; /* Color de fondo al pasar el ratón sobre subelementos */
+}
+
+/* Mostrar el submenú al hacer hover sobre el elemento principal */
+aside nav ul li:hover > ul {
     display: block;
-}
-
-nav ul li ul li {
-    width: 100%;
-    margin: 0;
-}
-
-nav ul li ul li a {
-    padding: 10px;
-    color: white;
-}
-
-nav ul li ul li a:hover {
-    background-color: #1abc9c;
 }
 
 main {
-    padding: 20px;
+    padding: 3rem;
+    margin-left: 0; /* Sin margen inicial */
+    transition: margin-left 0.3s ease; /* Transición suave para el margen */
+    flex-grow: 1; /* Permite que el contenido principal ocupe el espacio disponible */
+    position: relative; /* Necesario para el pseudo-elemento */
+    background-color: rgba(255, 255, 255, 0); /* Color de fondo semitransparente para el contenido */
+}
+main::before {
+    content: ""; /* Crea un pseudo-elemento */
+    position: absolute; /* Posiciona el pseudo-elemento */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../Imagenes/TConsulting.jpg'); /* Cambia la ruta a tu imagen */
+    background-size: contain; /* Mantiene la relación de aspecto de la imagen y la muestra completa */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    z-index: 0; /* Coloca el pseudo-elemento detrás del contenido */
+    filter: blur(5px) contrast(1) brightness(0.9); /* Ajusta el brillo para decolorar (0.0 es negro, 1.0 es original) */;
+
 }
 
+main h2, main p {
+    position: relative; /* Asegura que el texto esté encima del pseudo-elemento */
+    z-index: 1; /* Asegura que el texto esté encima del fondo */
+    color: #333; /* Color del texto */
+}
+
+/* Ajustes cuando el menú está visible */
+main.shifted {
+    margin-left: 250px; /* Mueve el contenido hacia la derecha cuando el menú está visible */
+}
+
+/* Estilos para el footer */
 footer {
-    background-color: #34495e;
+    background-color: #2980b9;
     color: white;
     text-align: center;
     padding: 10px;
@@ -89,3 +150,15 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    aside {
+        width: 200px; /* Reduce el ancho en pantallas pequeñas */
+    }
+
+    main.shifted {
+        margin-left: 200px; /* Ajusta el margen en pantallas pequeñas */
+    }
+}
+
