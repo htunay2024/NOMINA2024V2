@@ -4,36 +4,39 @@ class SQLSRVConnector
     private static $instance = null;
     private $connection;
 
-    // Configura correctamente los detalles de la conexión
-    private $host;  // Servidor
-    private $username; // Autenticacion NO HAY
-    private $password; // Autenticacino NO HAY
-    private $database;  // Base de Datos
+    // Detalles de la conexión
+    private $host;          // Servidor
+    private $username;      // Autenticación SQL
+    private $password;      // Autenticación SQL
+    private $database;      // Nombre de la base de datos
 
+    // Constructor conexión PDO
     private function __construct()
     {
-        // archivo .env
-        $this->loadEny(file: __DIR__ . '/../.env');
-        // Obtener las variables
+        // Cargar .env
+        $this->loadEnv(_DIR_ . '/../.env');
+
+        // Variables de entorno
         $this->host = 'den1.mssql8.gear.host';
         $this->database = 'tconsulting';
         $this->username = 'tconsulting';
-        $this->password = 'Ep0Wc6-2r1~1';     
-        
+        $this->password = 'Ep0Wc6-2r1~1'; 
+
         try {
-            // Verifica que los datos de conexión sean válidos
+            // Cadena de conexión DSN
             $dsn = "sqlsrv:Server={$this->host};Database={$this->database}";
+            // Crea una instancia PDO usando el DSN y las credenciales
             $this->connection = new PDO($dsn, $this->username, $this->password);
 
-            // Configura el modo de errores para PDO
+            // Errores para PDO
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            // Muestra un mensaje de error si no se puede conectar
+            // Mensaje de error, ausencia de coneccion.
             die("Database Connection Failed: " . $e->getMessage());
         }
     }
 
-       // Método para cargar el archivo .env
+    // Método para cargar el archivo .env
     private function loadEnv($file)
     {
         if (file_exists($file)) {
@@ -43,8 +46,8 @@ class SQLSRVConnector
             }
         }
     }
-    
-    // Singleton para obtener una sola instancia de la conexión
+
+    // Singleton para obtener una única instancia de la conexión
     public static function getInstance()
     {
         if (!self::$instance) {
@@ -53,11 +56,9 @@ class SQLSRVConnector
         return self::$instance;
     }
 
-    // Método para obtener la conexión activa
+    // Público conexión activa
     public function getConnection()
     {
         return $this->connection;
-    }
+    }
 }
-
-
