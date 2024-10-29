@@ -5,20 +5,20 @@ class SQLSRVConnector
     private $connection;
 
     // Configura correctamente los detalles de la conexión
-    private $host = 'DESKTOP-2C3S85H\HARVY';  // Servidor
-    private $username = null;           // Autenticacion NO HAY
-    private $password = null;           // Autenticacino NO HAY
-    private $database = 'TConsulting';  // Base de Datos
+    private $host;  // Servidor
+    private $username; // Autenticacion NO HAY
+    private $password; // Autenticacino NO HAY
+    private $database;  // Base de Datos
 
     private function __construct()
     {
-        // Cargar el archivo .env
+        // archivo .env
         $this->loadEny(file: __DIR__ . '/../.env');
-        // Obtener las variables de entorno
+        // Obtener las variables
         $this->host = 'den1.mssql8.gear.host';
-        $this->database 'tconsulting';
-        $this->username = 'tconsulting'; // Asigna el valor si usas autenticación
-        $this->password = 'Ep0Wc6-2-1-1'; // Asigna el valor si usas autenticación        
+        $this->database = 'tconsulting';
+        $this->username = 'tconsulting';
+        $this->password = 'Ep0Wc6-2r1~1';     
         
         try {
             // Verifica que los datos de conexión sean válidos
@@ -33,6 +33,17 @@ class SQLSRVConnector
         }
     }
 
+       // Método para cargar el archivo .env
+    private function loadEnv($file)
+    {
+        if (file_exists($file)) {
+            $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                putenv(trim($line));
+            }
+        }
+    }
+    
     // Singleton para obtener una sola instancia de la conexión
     public static function getInstance()
     {
