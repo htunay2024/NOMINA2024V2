@@ -17,8 +17,6 @@ if (isset($_GET['ID_Empleado'])) {
     exit();
 }
 
-// Obtener todos los empleados para mostrar en la tabla
-$empleados = $empleadoODB->getAll();
 
 ?>
 
