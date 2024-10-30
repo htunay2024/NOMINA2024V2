@@ -4,7 +4,7 @@ require_once 'SQLSRVConnector.php';
 require_once '../Model/Empleado.php';
 require_once '../Model/Departamento.php';
 
-class EmpleadoODB {
+class Empleado_C {
     private $connection;
 
     public function __construct() {
