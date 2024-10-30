@@ -2,7 +2,7 @@
 require_once 'SQLSRVConnector.php';
 require_once '../Model/Tienda.php';
 
-class TiendaODB {
+class Tienda_C {
     private $connection;
 
     public function __construct() {
