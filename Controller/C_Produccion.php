@@ -33,7 +33,7 @@ class C_Produccion {
         }
         return $producciones;
     }
-
+    
     public function buscarProduccionPorId($idProduccion) {
         $query = "EXEC BuscarProduccionPorEmpleado ?";
         $stmt = $this->connection->prepare($query);
@@ -49,7 +49,6 @@ class C_Produccion {
             $row['ID_Poliza']
         );
     }
-
     public function modificarProduccion($idProduccion, $piezasElaboradas, $bonificacion, $idEmpleado, $descripcion) {
         $query = "EXEC ModificarProduccion ?, ?, ?, ?, ?";
         $stmt = $this->connection->prepare($query);
@@ -63,8 +62,6 @@ class C_Produccion {
         // Ejecutar la consulta
         $stmt->execute();
     }
-
-
     public function insertarProduccionYPoliza($piezasElaboradas, $bonificacion, $idEmpleado, $descripcion) {
         $query = "EXEC InsertarProduccionYPoliza ?, ?, ?, ?";
         $stmt = $this->connection->prepare($query);
@@ -74,14 +71,14 @@ class C_Produccion {
         $stmt->bindParam(4, $descripcion);
         $stmt->execute();
     }
-
+    
     public function borrarProduccion($idProduccion) {
         $query = "EXEC BorrarProduccion ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(1, $idProduccion);
         $stmt->execute();
     }
-
+    
     public function getProduccionesByPoliza(int $idPoliza): array {
         $query = "EXEC BuscarProduccionPorPoliza @ID_Poliza = :idPoliza";
         $stmt = $this->connection->prepare($query);
@@ -102,7 +99,6 @@ class C_Produccion {
             );
             array_push($producciones, $produccion);
         }
-
         return $producciones;
     }
 }
