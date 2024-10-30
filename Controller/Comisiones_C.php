@@ -2,7 +2,7 @@
 require_once 'SQLSRVConnector.php';
 require_once '../Model/Comisiones.php';
 
-class ComisionesODB {
+class Comisiones_C {
     private $connection;
 
     public function __construct() {
