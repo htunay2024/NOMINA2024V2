@@ -1,9 +1,9 @@
 <?php
 
 require_once '../Model/Ausencia.php';
-require_once '../Data/SQLSRVConnector.php';
+require_once 'SQLSRVConnector.php';
 
-class AusenciaODB {
+class Ausencia_C {
     private $connection;
 
     public function __construct() {
