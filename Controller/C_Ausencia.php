@@ -1,9 +1,9 @@
 <?php
 
 require_once '../Model/Ausencia.php';
-require_once '../Controller/SQLSRVConnector.php';
+require_once '../Data/SQLSRVConnector.php';
 
-class C_Ausencia {
+class AusenciaODB {
     private $connection;
 
     public function __construct() {
@@ -108,22 +108,37 @@ class C_Ausencia {
     // Actualizar una ausencia existente
     public function update($idAusencia, $idEmpleado, $fechaSolicitud, $fechaInicio, $fechaFin, $motivo, $descripcion, $estado, $cuentaSalario, $descuento)
     {
+
+        // Imprimir las fechas para depuración
+        echo "Fecha Solicitud: $fechaSolicitud\n";
+        echo "Fecha Inicio: $fechaInicio\n";
+        echo "Fecha Fin: $fechaFin\n";
+
+        // Validar que las fechas estén en el formato correcto
+        if (!DateTime::createFromFormat('Y-m-d', $fechaSolicitud) ||
+            !DateTime::createFromFormat('Y-m-d', $fechaInicio) ||
+            !DateTime::createFromFormat('Y-m-d', $fechaFin)) {
+            throw new Exception("Una o más fechas no son válidas.");
+        }
+
         $sql = "EXEC ModificarAusencia 
-                @ID_Solicitud = :idSolicitud, 
-                @ID_Empleado = :idEmpleado, 
-                @FechaSolicitud = :fechaSolicitud,  -- Asegúrate de agregar este parámetro
-                @Fecha_Inicio = :fechaInicio, 
-                @Fecha_Fin = :fechaFin, 
-                @Motivo = :motivo, 
-                @Descripcion = :descripcion, 
-                @Estado = :estado, 
-                @Cuenta_Salario = :cuentaSalario, 
-                @Descuento = :descuento";
+            @ID_Solicitud = :idSolicitud, 
+            @ID_Empleado = :idEmpleado, 
+            @FechaSolicitud = :fechaSolicitud, 
+            @Fecha_Inicio = :fechaInicio, 
+            @Fecha_Fin = :fechaFin, 
+            @Motivo = :motivo, 
+            @Descripcion = :descripcion, 
+            @Estado = :estado, 
+            @Cuenta_Salario = :cuentaSalario, 
+            @Descuento = :descuento";
 
         $stmt = $this->connection->prepare($sql);
+
+        // Vincular parámetros
         $stmt->bindParam(':idSolicitud', $idAusencia);
         $stmt->bindParam(':idEmpleado', $idEmpleado);
-        $stmt->bindParam(':fechaSolicitud', $fechaSolicitud);  // Asegúrate de pasar el valor aquí
+        $stmt->bindParam(':fechaSolicitud', $fechaSolicitud);
         $stmt->bindParam(':fechaInicio', $fechaInicio);
         $stmt->bindParam(':fechaFin', $fechaFin);
         $stmt->bindParam(':motivo', $motivo);
@@ -132,8 +147,15 @@ class C_Ausencia {
         $stmt->bindParam(':cuentaSalario', $cuentaSalario);
         $stmt->bindParam(':descuento', $descuento);
 
-        return $stmt->execute();
+        // Ejecutar la consulta y manejar errores
+        if (!$stmt->execute()) {
+            $errorInfo = $stmt->errorInfo();
+            throw new Exception("Error al actualizar la ausencia: " . $errorInfo[2]);
+        }
+
+        return true; // Devuelve verdadero si la actualización fue exitosa
     }
+
 
     // Eliminar una ausencia por su ID_Solicitud
     public function delete($idSolicitud) {
@@ -146,4 +168,3 @@ class C_Ausencia {
     }
 
 ?>
-
