@@ -3,7 +3,7 @@
 require_once '../Model/INTECAP.php';
 require_once 'SQLSRVConnector.php';
 
-class INTECAPODB
+class C_INTECAP
 {
     private $connection;
 
