@@ -1,34 +1,24 @@
-<?php 
-
-require_once '../Model/Usuario.php';
-require_once '../Data/UsuarioODB.php';
-
-$usuarioDB = new UsuarioODB();
-
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['id'])) {
-        $usuario = $usuarioDB->getById($_GET['id']);
-        echo json_encode($usuario);
-    } else {
-        $usuarios = $usuarioDB->getAll();
-        echo json_encode($usuarios);
-    }
-}
+<?php
+require_once 'UsuarioODB.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data = json_decode(file_get_contents('php://input'));
-    $usuario = new Usuario(null, $data->Correo, $data->Contrasena, $data->ID_Rol, $data->Rol, $data->Estado);
-    $usuarioDB->insert($usuario);
-}
+    $correo = $_POST['Correo'];
+    $contrasena = $_POST['Contrasena'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-    $data = json_decode(file_get_contents('php://input'));
-    $usuario = new Usuario($data->ID_Usuario, $data->Correo, $data->Contrasena, $data->ID_Rol,  $data->Rol, $data->Estado);
-    $usuarioDB->update($usuario);
-}
+    $usuario = UsuarioODB::autenticarUsuario($correo, $contrasena);
 
-if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-    $data = json_decode(file_get_contents('php://input'));
-    $usuarioDB->delete($data->ID_Usuario);
-}
+    if ($usuario) {
+        session_start();
+        $_SESSION['usuario'] = $usuario;
 
+        if ($usuario->getRol() === 'Administrador') {
+            header('Location: ../Views/index1.php');
+        } else {
+            header('Location: ../Views/index2.php');
+        }
+        exit();
+    } else {
+        echo "Usuario o contraseña incorrectos.";
+    }
+}
+?>
