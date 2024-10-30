@@ -2,10 +2,10 @@
 session_start();  // Iniciar la sesión para manejar los datos del usuario
 
 require_once '../Model/Expediente.php';
-require_once '../Data/ExpedienteODB.php';
+require_once '../Controller/Expediente_C.php';
 require_once '../Model/Empleado.php';
 
-$expedienteODB = new ExpedienteODB();
+$expedienteODB = new Expediente_C();
 
 // Verifica si ya se ha recibido el nombre del empleado desde una solicitud GET o una sesión
 if (isset($_GET['nombreCompleto'])) {
