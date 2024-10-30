@@ -4,7 +4,6 @@ require_once '../Model/Comisiones.php';
 
 class C_Comisiones {
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection(); // Obtén la conexión aquí
         if ($this->connection === null) {
@@ -19,7 +18,6 @@ class C_Comisiones {
         try {
             $stmt->execute();
             $comisiones = [];
-
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Aquí creas objetos de la clase Comisiones
                 $comision = new Comisiones(
@@ -35,7 +33,6 @@ class C_Comisiones {
                 );
                 $comisiones[] = $comision;
             }
-
             return $comisiones;
         } catch (PDOException $e) {
             throw new Exception("Error en la consulta: " . $e->getMessage());
@@ -47,14 +44,11 @@ class C_Comisiones {
             $sql = "EXEC [dbo].[BuscarComisionesPorEmpleado] :ID_Comision";
             $stmt = $this->connection->prepare($sql);
             $stmt->bindParam(':ID_Comision', $ID_Comision, PDO::PARAM_INT);
-
             // Ejecutar el procedimiento almacenado
             $stmt->execute();
-
             // Retornar los resultados
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
-
         } catch (PDOException $e) {
             // Manejo de errores
             echo "Error: " . $e->getMessage();
@@ -62,9 +56,7 @@ class C_Comisiones {
         }
     }
 
-
-
-    // Insertar una nueva comisión y póliza
+    // Insertar
     public function insertarComisionYPoliza($mes, $anio, $montoVentas, $porcentaje, $comision, $idEmpleado, $descripcion) {
         $query = "EXEC InsertarComisionYPoliza :Mes, :Anio, :Monto_Ventas, :Porcentaje, :Comision, :ID_Empleado, :Descripcion";
         $stmt = $this->connection->prepare($query);
@@ -77,9 +69,8 @@ class C_Comisiones {
         $stmt->bindParam(":Descripcion", $descripcion);
         $stmt->execute();
     }
-
-
-    // Modificar una comisión existente
+    
+    // Modificar
     public function update($idComision, $mes, $anio, $montoVentas, $porcentaje, $idEmpleado, $descripcion) {
         $query = "EXEC ModificarComisionVentas :ID_Comision, :Mes, :Anio, :Monto_Ventas, :Porcentaje, :ID_Empleado, :Descripcion";
         $stmt = $this->connection->prepare($query);
