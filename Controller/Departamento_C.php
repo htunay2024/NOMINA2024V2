@@ -2,7 +2,7 @@
 require_once 'SQLSRVConnector.php';
 require_once '../Model/Departamento.php';
 
-class DepartamentoODB {
+class Departamento_C {
     private $connection;
 
     public function __construct() {
