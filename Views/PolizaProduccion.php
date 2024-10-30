@@ -1,10 +1,10 @@
 <?php
-require_once '../Data/PolizaODB.php';
+require_once '../Controller/Poliza_C.php';
 require_once '../Model/Produccion.php';
-require_once '../Data/ProduccionODB.php';
+require_once '../Controller/Produccion_C.php';
 
-$produccionODB = new ProduccionODB();
-$polizaContableODB = new PolizaODB();
+$produccionODB = new Produccion_C();
+$polizaContableODB = new Poliza_C();
 
 $idPoliza = $_GET['ID_Poliza'] ?? null;
 
