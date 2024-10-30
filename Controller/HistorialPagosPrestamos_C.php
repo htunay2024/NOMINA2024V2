@@ -3,7 +3,7 @@
 require_once 'SQLSRVConnector.php';
 require_once '../Model/HistorialPagosPrestamos.php';
 
-class HistorialPagosPrestamosODB
+class HistorialPagosPrestamos_C
 {
     private $connection;
 
