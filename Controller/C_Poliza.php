@@ -32,7 +32,6 @@ class C_Poliza {
             );
             array_push($polizas, $poliza);
         }
-
         return $polizas;
     }
 
@@ -61,17 +60,15 @@ class C_Poliza {
         }
         return null;
     }
-
+    
     public function getComisionesByPoliza(int $idPoliza): array {
         $query = "EXEC BuscarComisionesPorPoliza @ID_Poliza = :idPoliza";
         $stmt = $this->connection->prepare($query);
-
         // Usar bindValue en vez de bind_param
         $stmt->bindValue(':idPoliza', $idPoliza, PDO::PARAM_INT);
-
         // Ejecutar la consulta
         $stmt->execute();
-
+        
         $comisiones = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // Crear instancia de Comisiones
@@ -88,9 +85,7 @@ class C_Poliza {
             );
             array_push($comisiones, $comision);
         }
-
         return $comisiones;
     }
 }
-
 ?>
