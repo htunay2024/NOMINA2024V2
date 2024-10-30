@@ -2,7 +2,7 @@
 require_once '../Model/IRTRA.php';
 require_once 'SQLSRVConnector.php';
 
-class IRTRAODB
+class C_IRTRA
 {
 
     private $connection;
