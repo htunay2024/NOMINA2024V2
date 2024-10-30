@@ -2,7 +2,7 @@
 require_once 'SQLSRVConnector.php';
 require_once '../Model/Prestamo.php';
 
-class PrestamoODB {
+class Prestamo_C {
     private $connection;
 
     public function __construct() {
