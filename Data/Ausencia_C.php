@@ -1,7 +1,7 @@
 <?php
 
 require_once '../Model/Ausencia.php';
-require_once '../Data/SQLSRVConnector.php';
+require_once 'SQLSRVConnector.php';
 
 class Ausencia_C {
     private $connection;
