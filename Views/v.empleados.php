@@ -27,70 +27,115 @@ $empleados = $empleadoODB->getAll();
 
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Empleados</title>
+    <title>Empleados Existentes</title>
     <link rel="stylesheet" href="../Styles/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 
 <body>
 <header>
-    <h1>Gestión de Empleados</h1>
-    <button onclick="cerrarSesion()" class="btn btn-eliminar">Cerrar Sesión</button>
+    <img src="../Imagenes/T%20Consulting.jpg" alt="Logo de T Consulting" style="height: 50px; vertical-align: middle;">
+    <h1>GESTIÓN DE EMPLEADOS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button> <!-- Botón hamburguesa -->
 </header>
-<nav>
-    <ul>
-        <li>
-            <a href="#">RRHH</a>
-            <ul>
-                <li><a href="v.empleados.php">Empleados</a></li>
-                <li><a href="v.Expediente.php">Expedientes</a></li>
-                <li><a href="v.ausencias.php">Permisos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Nómina</a>
-            <ul>
-                <li><a href="v.nomina.php">Pagos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Contabilidad</a>
-            <ul>
-                <li><a href="v.Poliza.php">Polizas Contables</a></li>
-                <li><a href="v.horasextras.php">Horas Extras</a></li>
-                <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
-                <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">BANTRAB</a>
-            <ul>
-                <li><a href="v.prestamo.php">Prestamos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Tienda</a>
-            <ul>
-                <li><a href="v.tienda.php">Registro de Tienda</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+<aside id="sideMenu">
+    <nav>
+        <ul>
+            <li><a href="index.php">INICIO</a></li>
+            <li>
+                <a href="#">RECURSOS HUMANOS</a>
+                <ul>
+                    <li><a href="v.empleados.php">EMPLEADO</a>
+                        <ul>
+                            <li><a href="v.nuevo.empleado.php">CREAR EMPLEADO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.usuarios.php">USUARIOS</a>
+                        <ul>
+                            <li><a href="v.nuevo.usuario.php">CREAR USUARIO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.Expediente.php">EXPEDIENTES</a>
+                        <ul>
+                            <li><a href="v.nuevo.expediente.php">AGREGAR DOCUMENTO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.ausencias.php">PERMISOS</a>
+                        <ul>
+                            <li><a href="v.nueva.ausencia.php">NUEVO PERMISO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">NOMINA</a>
+                <ul>
+                    <li><a href="#">PAGOS</a></li>
+                    <li><a href="#">DEDUCCIONES</a></li>
+                    <li><a href="#">BONIFICACIONES</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Contabilidad</a>
+                <ul>
+                    <li><a href="v.horasextras.php">HORAS EXTRAS</a>
+                        <ul>
+                            <li><a href="v.nueva.horasextras.php">NUEVO REGISTRO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.produccion.php">BONIFICACIONES POR PRODUCCIÓN</a>
+                        <ul>
+                            <li><a href="v.nueva.produccion.php">NUEVA BONIFICACIÓN</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.comisiones.php">COMISIONES SOBRE VENTAS</a>
+                        <ul>
+                            <li><a href="v.nueva.comision.php">NUEVA COMISION</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.Poliza.php">POLIZAS CONTABLES</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">PRESTAMOS</a>
+                <ul>
+                    <li><a href="v.prestamo.php">DEUDAS DE PRESTAMOS</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">TIENDA SOLIDARIA</a>
+                <ul>
+                    <li><a href="v.tienda.php">REGISTROS DE TIENDA</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</aside>
 <main>
     <section class="Empleados">
-        <h2>Empleados Registrados</h2>
+        <h2>EMPLEADOS:</h2>
         <div class="table-container">
             <table>
+                <colgroup>
+                    <col style="width: auto;">
+                    <col style="width: auto;">
+                    <col style="width: 150px;">
+                    <col style="width: 150px;">
+                    <col style="width: 150px;">
+                    <col style="width: 150px;">
+                    <col style="width: 100px;">
+                    <col style="width: 275px;">
+                </colgroup>
                 <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th class="text-wrap">Fecha de Nacimiento</th>
-                    <th class="text-wrap">Fecha de Contratación</th>
-                    <th>Salario Base</th>
-                    <th>Departamento</th>
-                    <th>No. Cuenta</th>
-                    <th>Acciones</th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th class="text-wrap">FECHA DE NACIMIENTO</th>
+                    <th class="text-wrap">FECHA DE CONTRATACIÓN</th>
+                    <th>SALARIO BASE</th>
+                    <th>DEPARTAMENTO</th>
+                    <th class="text-wrap">NO. CUENTA</th>
+                    <th>ACCIONES</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -107,15 +152,14 @@ $empleados = $empleadoODB->getAll();
                         <td>
                             <a href="v.editar.empleado.php?ID_Empleado=<?php echo $empleado->getIdEmpleado(); ?>" class="btn btn-editar">Editar</a>
                             <button class="btn btn-eliminar" data-id="<?php echo $empleado->getIdEmpleado(); ?>">Eliminar</button>
-                            <button class="employee-button" onclick="showEmployeePhoto('<?php echo $empleado->getFoto(); ?>')">Ver Foto</button>
-                            <a href="v.familiar.php?ID_Empleado=<?php echo $empleado->getIdEmpleado(); ?>" class="btn btn-editar">Familiares</a>
+                            <button class="employee-button" onclick="showEmployeePhoto('<?php echo $empleado->getFoto(); ?>')">Foto</button>
+                            <a href="v.familiar.php?ID_Empleado=<?php echo $empleado->getIdEmpleado(); ?>" class="btn btn-Familiar">Familiares</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-        <button class="btn-nuevo">Agregar Nuevo Empleado +</button>
         <div id="photoModal" class="photo-modal" style="display: none;">
             <span class="close" onclick="hideEmployeePhoto()">×</span>
             <div class="modal-content">
@@ -164,12 +208,14 @@ $empleados = $empleadoODB->getAll();
     function showEmployeePhoto(photoUrl) {
         const modal = document.getElementById("photoModal");
         const img = document.getElementById("employeePhoto");
+        const hamburgerButton = document.querySelector('.menu-toggle');
+
+        // Oculta el botón hamburguesa cuando se muestra la foto
+        hamburgerButton.classList.add('hidden');
 
         if (photoUrl && photoUrl !== '../Imagenes/Sin Foto.jpeg') {
-            // Si la foto existe y no es la predeterminada, se asigna la ruta pasada
             img.src = photoUrl;
         } else {
-            // Si no existe una foto, se muestra la imagen predeterminada
             img.src = '../Imagenes/Sin Foto.jpeg';
         }
 
@@ -177,7 +223,6 @@ $empleados = $empleadoODB->getAll();
             modal.style.display = "flex"; // Mostrar modal después de que cargue la imagen
         }
 
-        // Redimensionar la imagen al hacer clic sobre ella
         img.addEventListener('click', function() {
             if (img.classList.contains('large')) {
                 img.classList.remove('large'); // Vuelve al tamaño pequeño
@@ -189,21 +234,25 @@ $empleados = $empleadoODB->getAll();
 
     function hideEmployeePhoto() {
         const modal = document.getElementById("photoModal");
+        const hamburgerButton = document.querySelector('.menu-toggle');
         modal.style.display = "none";
         const img = document.getElementById("employeePhoto");
-        img.src = ""; // Limpia la fuente de la imagen
+        img.src = "";
 
-        // Asegúrate de restablecer el tamaño de la imagen cuando se cierre el modal
         img.classList.remove('large');
+
+        // Muestra el botón hamburguesa cuando se oculta la foto
+        hamburgerButton.classList.remove('hidden');
     }
 
-    function cerrarSesion() {
-        // Redirige al usuario a la página index.php
-        window.location.href = '../index.html';
-    }
 
+    function toggleMenu() {
+        const sideMenu = document.querySelector('aside');
+        const mainContent = document.querySelector('main');
+        sideMenu.classList.toggle('active');
+        mainContent.classList.toggle('shifted');
+    }
 </script>
 
 </body>
 </html>
-
