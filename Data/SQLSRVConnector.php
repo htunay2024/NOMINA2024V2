@@ -20,7 +20,7 @@ class SQLSRVConnector
         $this->host = 'den1.mssql8.gear.host';
         $this->database = 'tconsulting';
         $this->username = 'tconsulting';  // Asigna el valor si usas autenticación
-        $this->password = 'Ep0Wc6-2r1~1';  // Asigna el valor si usas autenticación
+        $this->password = 'Sh2z??Gc0e89';  // Asigna el valor si usas autenticación
 
         try {
             // Configura la cadena de conexión DSN
