@@ -3,7 +3,7 @@
 require_once 'SQLSRVConnector.php';
 require_once 'Model/Usuario.php';
 
-class UsuarioODB {
+class Usuario_C {
     private $connection;
 
     public function __construct() {
