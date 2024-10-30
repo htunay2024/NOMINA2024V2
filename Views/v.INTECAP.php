@@ -1,8 +1,8 @@
 <?php
 require_once '../Model/Intecap.php';
-require_once '../Data/IntecapODB.php';
+require_once '../Controller/C_INTECAP.php';
 
-$intecapODB = new IntecapODB();
+$intecapODB = new C_INTECAP();
 $intecapList = $intecapODB->getAll();
 ?>
 
