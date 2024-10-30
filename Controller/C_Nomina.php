@@ -1,8 +1,8 @@
 <?php
-require_once '../Data/SQLSRVConnector.php';
+require_once 'SQLSRVConnector.php';
 require_once '../Model/Nomina.php';
 
-class NominaODB
+class C_Nomina
 {
     private $connection;
 
