@@ -18,8 +18,8 @@ class SQLSRVConnector
 
         // Variables de entorno
         $this->host = 'den1.mssql8.gear.host';
-        $this->database = 'tconsulting';
-        $this->username = 'tconsulting';
+        $this->database = 'friexatti1';
+        $this->username = 'friexatti1';
         $this->password = 'Sh2z??Gc0e89'; 
 
         try {
