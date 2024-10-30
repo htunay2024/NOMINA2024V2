@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,8 +15,8 @@
 
     <main>
         <div class="form-section">
-            <h2>Inicio de Sesión</h2>
-            <form action="../Controller/Usuario.Controller.php" method="POST" class="form-login">
+            <h2>Inicio de Sesión (Provisional)</h2>
+            <form method="POST" action="">
                 <div class="form-group">
                     <label for="Correo">Usuario</label>
                     <input type="text" id="Correo" name="Correo" required>
@@ -28,11 +29,35 @@
                     <button type="submit" class="btn-submit">Ingresar</button>
                 </div>
             </form>
+            <div id="loginMessage"></div>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2024 T Consulting S.A. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const correo = document.getElementById("Correo").value;
+            const contrasena = document.getElementById("Contrasena").value;
+            const loginMessage = document.getElementById("loginMessage");
+
+            // Provisional credentials for testing
+            const adminCredentials = { correo: "admin@test.com", contrasena: "admin123" };
+            const empleadoCredentials = { correo: "empleado@test.com", contrasena: "empleado123" };
+
+            if (correo === adminCredentials.correo && contrasena === adminCredentials.contrasena) {
+                window.location.href = "../Views/index1.php";
+            } else if (correo === empleadoCredentials.correo && contrasena === empleadoCredentials.contrasena) {
+                window.location.href = "../Views/index2.php";
+            } else {
+                loginMessage.textContent = "Credenciales incorrectas, intente nuevamente.";
+                loginMessage.style.color = "red";
+            }
+        });
+    </script>
 </body>
 </html>
