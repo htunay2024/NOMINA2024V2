@@ -5,7 +5,7 @@ require_once '../Model/Poliza.php';
 require_once '../Model/Comisiones.php';
 require_once '../Model/Produccion.php';
 
-class PolizaODB {
+class Poliza_C {
     private $connection;
 
     public function __construct() {
