@@ -2,7 +2,7 @@
 
 require_once '../Model/IGSS.php';
 require_once 'SQLSRVConnector.php';
-class IGSSODB
+class C_IGSS
 {
     private $connection;
 
