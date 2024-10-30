@@ -1,9 +1,9 @@
 <?php
 
 require_once '../Model/IGSS.php';
-require_once '../Data/IGSSODB.php';
+require_once '../Controller/C_IGSS.php';
 
-$igssODB = new IGSSODB();
+$igssODB = new C_IGSS();
 
 // Obtener todos los registros de IGSS para mostrar en la tabla
 $registrosIGSS = $igssODB->getAll();
