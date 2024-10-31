@@ -73,7 +73,7 @@
     </aside>
 
 <main>
-    <h2>Políticas de la Empresa</h2>
+    <h2>Nosotros como empresa</h2>
     <div class="policy-box">
         <p>
         Nuestra visión es ofrecer un sistema de nómina integral y de alto rendimiento, <br><br>
