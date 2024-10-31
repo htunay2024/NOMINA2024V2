@@ -74,7 +74,8 @@
 
 <main>
     <h2>Políticas de la Empresa</h2>
-    <p>
+    <div class="policy-box">
+        <p>
         Nuestra visión es ofrecer un sistema de nómina integral y de alto rendimiento, <br><br>
         diseñado para ser eficiente, transparente y seguro. Aspiramos a simplificar y <br><br>
         optimizar todos los procesos relacionados con la gestión de nómina y la administración <br><br>
