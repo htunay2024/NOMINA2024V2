@@ -13,17 +13,36 @@
             justify-content: center;
             align-items: center;
             margin: 0;
-            font-family: 'Poppins', sans-serif; /* Nueva fuente */
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff; /* Color de texto contrastante */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fondo con opacidad */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-image: url('NOMINA2024V2/Imagenes/nominailustracion.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            color: #fafcfd;
+            opacity: 0.7; /* Opacidad para hacer el fondo más tenue */
+            z-index: -1; /* Coloca la imagen detrás del contenido */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
-    <div class="square"></div>
     <h1>¡Bienvenido a Nuestro Sitio!</h1>
 
     <script>
