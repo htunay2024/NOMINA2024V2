@@ -1,9 +1,9 @@
 <?php
-require_once '../Data/AusenciaODB.php';
-require_once '../Data/EmpleadoODB.php';
+require_once '../Controller/Ausencia_C.php';
+require_once '../Controller/Empleado_C.php';
 
-$ausenciaODB = new AusenciaODB();
-$empleadoODB = new EmpleadoODB();
+$ausenciaODB = new Ausencia_C ();
+$empleadoODB = new Empleado_C ();
 
 $idAusencia = $_GET['ID_Solicitud'] ?? null;
 
