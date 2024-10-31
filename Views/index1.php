@@ -19,6 +19,7 @@
     <aside id="sideMenu">
         <nav>
             <ul>
+                <li><a href="index1.php">Inicio</a></li>
                 <li>
                     <a href="#">Recursos Humanos</a>
                     <ul>
@@ -31,24 +32,34 @@
                 <li>
                     <a href="#">Pago de Nómina</a>
                     <ul>
-                        <li><a href="#">Pagos</a></li>
-                        <li><a href="#">Deducciones</a></li>
-                        <li><a href="#">Bonificaciones</a></li>
+                        <li><a href="v.HistorialPagos.php">Historial de Pagos</a></li>
+                        <li><a href="v.HistorialPagosPrestamos.php">Pagos de Préstamos</a></li>
+                        <li><a href="v.IGSS.php">IGSS</a></li>
+                        <li><a href="v.INTECAP.php">INTECAP</a></li>
+                        <li><a href="v.IRTRA.php">IRTRA</a></li>
+                        <li><a href="v.nomina.php">Nómina General</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Contabilidad</a>
                     <ul>
                         <li><a href="v.horasextras.php">Horas Extras</a></li>
-                        <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
-                        <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
-                        <li><a href="v.Poliza.php">Polizas Contables</a></li>
+                        <li><a href="v.produccion.php">Bonificaciones por Producción</a></li>
+                        <li><a href="v.comisiones.php">Comisiones sobre Ventas</a></li>
+                        <li><a href="v.Poliza.php">Pólizas Contables</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Compras y Almacén</a>
+                    <ul>
+                        <li><a href="v.compra.php">Registro de Compras</a></li>
+                        <li><a href="v.HistorialCompras.php">Historial de Compras</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Prestamos</a>
                     <ul>
-                        <li><a href="v.prestamo.php">Deuda de Prestamos</a></li>
+                        <li><a href="v.prestamo.php">Deuda de Préstamos</a></li>
                     </ul>
                 </li>
                 <li>
@@ -85,4 +96,3 @@
 </script>
 </body>
 </html>
-
