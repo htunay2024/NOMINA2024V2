@@ -1,7 +1,7 @@
 <?php
-require_once '../Data/ExpedienteODB.php';
+require_once '../Controller/Expediente_C.php';
 
-$expedienteODB = new ExpedienteODB();
+$expedienteODB = new Expediente_C();
 
 $idExpediente = $_GET['ID_Expediente'] ?? null;
 
