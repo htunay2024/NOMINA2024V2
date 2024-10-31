@@ -19,42 +19,44 @@
     <aside id="sideMenu">
         <nav>
             <ul>
+                <li><a href="index2.php">Inicio</a></li>
                 <li>
-                    <a href="#">Recursos Humanos</a>
+                    <a href="#">Expediente</a>
                     <ul>
-                        <li><a href="v.empleados.php">Empleado</a></li>
-                        <li><a href="v.usuarios.php">Usuario</a></li>
-                        <li><a href="v.Expediente.php">Expediente</a></li>
-                        <li><a href="v.ausencias.php">Permiso</a></li>
+                        <li><a href="v.Expediente.php">Ver Expediente</a></li>
+                        <li><a href="v.nuevo.expediente.php">Actualizar Expediente</a></li>
+                        <li><a href="v.nuevo.familiar.php">Registrar Familiar</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Pago de Nómina</a>
                     <ul>
-                        <li><a href="#">Pagos</a></li>
-                        <li><a href="#">Deducciones</a></li>
-                        <li><a href="#">Bonificaciones</a></li>
+                        <li><a href="v.PagoTienda.php">Pagos en Tienda</a></li>
+                        <li><a href="v.RealizarPago.php">Realizar Pago</a></li>
+                        <li><a href="v.nuevo.pago.php">Solicitar Nuevo Pago</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Contabilidad</a>
+                    <a href="#">Solicitudes</a>
                     <ul>
-                        <li><a href="v.horasextras.php">Horas Extras</a></li>
-                        <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
-                        <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
-                        <li><a href="v.Poliza.php">Polizas Contables</a></li>
+                        <li><a href="v.nueva.ausencia.php">Nueva Ausencia</a></li>
+                        <li><a href="v.nueva.comision.php">Solicitar Comisión</a></li>
+                        <li><a href="v.nueva.horasextras.php">Solicitar Horas Extras</a></li>
+                        <li><a href="v.nueva.produccion.php">Registrar Producción</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Prestamos</a>
+                    <a href="#">Préstamos</a>
                     <ul>
-                        <li><a href="v.prestamo.php">Deuda de Prestamos</a></li>
+                        <li><a href="v.prestamo.php">Historial de Préstamos</a></li>
+                        <li><a href="v.nuevo.prestamo.php">Solicitar Préstamo</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Tienda Solidaria</a>
+                    <a href="#">Producción</a>
                     <ul>
-                        <li><a href="v.tienda.php">Registros de Tienda</a></li>
+                        <li><a href="v.produccion.php">Ver Producción</a></li>
+                        <li><a href="v.nuevo.empleado.php">Registrar Nuevo Empleado</a></li>
                     </ul>
                 </li>
             </ul>
@@ -62,8 +64,8 @@
     </aside>
 
     <main>
-        <h2>Políticas de la Empresa</h2>
-        <p>Ella si te ama</p>
+        <h2>Bienvenido al Portal del Empleado</h2>
+        <p>Accede a tus recursos y gestiona tus solicitudes desde aquí.</p>
     </main>
 </div>
 
@@ -85,4 +87,3 @@
 </script>
 </body>
 </html>
-
