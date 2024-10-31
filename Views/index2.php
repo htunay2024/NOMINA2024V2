@@ -63,18 +63,8 @@
         </nav>
     </aside>
 
-<main>
-    <h2>Nosotros como empresa</h2>
-    <div class="policy-box">
-        <p>
-        Nuestra visión es ofrecer un sistema de nómina integral y de alto rendimiento, <br><br>
-        diseñado para ser eficiente, transparente y seguro. Aspiramos a simplificar y <br><br>
-        optimizar todos los procesos relacionados con la gestión de nómina y la administración <br><br>
-        de recursos humanos, permitiendo a nuestros clientes centrarse en su desarrollo <br><br>
-        organizacional mientras el sistema asegura el cumplimiento de todas las obligaciones salariales y legales. 
-    </p>
-</main>
-</div>
+Bienvenido al Portal del Empleado
+Accede a tus recursos y gestiona tus solicitudes desde aquí.
 
 <footer>
     <p>&copy; 2024-2024 T Consulting S.A. Todos los derechos reservados.</p>
