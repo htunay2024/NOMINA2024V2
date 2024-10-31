@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Data/UsuarioODB.php';
+require_once 'Controller/Usuario_C.php';
 require_once 'Model/Usuario.php';
 
 $error = '';
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!preg_match('/^[a-zA-Z0-9]*$/', $usuario) || !preg_match('/^[a-zA-Z0-9]*$/', $password)) {
         $error = "Usuario o contraseña contienen caracteres no permitidos.";
     } else {
-        $usuarioODB = new UsuarioODB();
+        $usuarioODB = new Usuario_C ();
         $usuarioAutenticado = $usuarioODB->login($usuario, $password);
 
         if ($usuarioAutenticado) {
@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="square"></div>
 <div class="content">
     <h1>Bienvenido a TConsulting</h1>
-    <p>Tu Solución en Gestión de nómina</p>
 </div>
 
 <!-- Aside para el formulario de inicio de sesión -->
@@ -66,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required pattern="[a-zA-Z0-9]*">
         </div>
-        <button type="submit">Iniciar Sesión</button>
     </form>
 </aside>
 </body>
