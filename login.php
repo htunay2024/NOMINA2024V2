@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!preg_match('/^[a-zA-Z0-9]*$/', $usuario) || !preg_match('/^[a-zA-Z0-9]*$/', $password)) {
         $error = "Usuario o contraseña contienen caracteres no permitidos.";
     } else {
-        $usuarioODB = new Usuario_C ();
+        $usuarioODB = new Usuario_C();
         $usuarioAutenticado = $usuarioODB->login($usuario, $password);
 
         if ($usuarioAutenticado) {
@@ -49,13 +49,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Bienvenido a TConsulting</h1>
 </div>
 
+<!-- Botón para redirigir a indexAdmon.php -->
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="window.location.href='/Views/indexAdmon.php'" style="padding: 10px 20px; font-size: 16px;">
+        Ir a Página de Administración
+    </button>
+</div>
+
 <!-- Aside para el formulario de inicio de sesión -->
 <aside class="login-aside">
     <h2>Iniciar Sesión</h2>
     <?php if ($error): ?>
         <div class="error-message"><?php echo $error; ?></div>
     <?php endif; ?>
-    <form action="" method="POST"> <!-- Cambia aquí para que apunte a la misma página -->
+    <form action="" method="POST">
         <div class="form-group">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required pattern="[a-zA-Z0-9]*">
@@ -69,6 +76,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </aside>
 </body>
 </html>
-
-
-
