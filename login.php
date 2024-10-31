@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario_id'] = $usuarioAutenticado->getidUsuario();
             $_SESSION['usuario_nombre'] = $usuarioAutenticado->getCorreo();
             $_SESSION['rol'] = $usuarioAutenticado->getIdRol();
-            header("Location: Views/indexAdmon.php");
+            header("Location: Views/index1.php");
             exit();
         } else {
             $error = "Usuario o contraseña incorrectos.";
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Botón para redirigir a indexAdmon.php -->
 <div style="text-align: center; margin-top: 20px;">
-    <button onclick="window.location.href='/Views/indexAdmon.php'" style="padding: 10px 20px; font-size: 16px;">
+    <button onclick="window.location.href='/Views/index1.php'" style="padding: 10px 20px; font-size: 16px;">
         Ir a Página de Administración
     </button>
 </div>
