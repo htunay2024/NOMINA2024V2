@@ -2,7 +2,7 @@
 require_once '../Model/Usuario.php';
 require_once '../Controller/Usuario_C.php';
 
-$usuarioDB = new Usuario_C ();
+$usuarioDB = new Usuario_C();
 $usuarios = $usuarioDB->getAll();
 
 ?>
@@ -23,7 +23,7 @@ $usuarios = $usuarioDB->getAll();
             <ul>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="#" class="active">Usuarios</a></li>
-                <li><a href="usuarios.php">Nuevo</a></li>
+                <li><a href="crear_usuario.php">Nuevo Usuario</a></li> <!-- Enlace para crear un nuevo usuario -->
                 <li><a href="roles.php">Roles</a></li>
             </ul>
         </nav>
@@ -44,13 +44,13 @@ $usuarios = $usuarioDB->getAll();
                 <tbody>
                     <?php foreach ($usuarios as $usuario) : ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($usuario->getID_Usuario()); ?></td>
+                            <td><?php echo htmlspecialchars($usuario->getIdUsuario()); ?></td>
                             <td><?php echo htmlspecialchars($usuario->getCorreo()); ?></td>
-                            <td><?php echo htmlspecialchars($usuario->getRol()); ?></td>
-                            <td><?php echo htmlspecialchars($usuario->getEstado() == 1 ? 'Activo' : 'Inactivo'); ?></td>
+                            <td><?php echo htmlspecialchars($usuario->getIdRol()); ?></td>
+                            <td><?php echo htmlspecialchars($usuario->getEmpresa()); ?></td>
                             <td>
-                                <a href="editar_usuario.php?id=<?php echo $usuario->getID_Usuario(); ?>" class="btn btn-editar">Editar</a>
-                                <a href="eliminar_usuario.php?id=<?php echo $usuario->getID_Usuario(); ?>" class="btn btn-eliminar" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">Eliminar</a>
+                                <a href="editar_usuario.php?id=<?php echo $usuario->getIdUsuario(); ?>">Editar</a>
+                                <a href="eliminar_usuario.php?id=<?php echo $usuario->getIdUsuario(); ?>">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -58,9 +58,5 @@ $usuarios = $usuarioDB->getAll();
             </table>
         </section>
     </main>
-    <footer>
-        <p>&copy; <?php echo date("Y"); ?> T Consulting 2024</p>
-    </footer>
 </body>
-
 </html>
