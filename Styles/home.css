@@ -166,7 +166,13 @@ footer {
     background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
     padding: 20px; /* Espacio alrededor del texto */
     border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle relieve */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar relieve */
     max-width: 800px; /* Ancho máximo para el recuadro */
     margin: auto; /* Centra el recuadro */
+    position: absolute; /* Posición absoluta para superponerlo */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro de la caja al centro de la pantalla */
+    z-index: 10000; /* Asegura que esté por encima de todos los elementos */
 }
+
