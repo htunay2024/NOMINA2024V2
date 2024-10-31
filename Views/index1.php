@@ -75,9 +75,11 @@
 <main>
     <h2>Políticas de la Empresa</h2>
     <p>
-        Nuestra visión es ofrecer un sistema de nómina integral y de alto rendimiento, diseñado para ser eficiente, transparente y seguro. Aspiramos a simplificar y optimizar todos los procesos relacionados con la gestión de nómina y la administración de recursos humanos, permitiendo a nuestros clientes centrarse en su desarrollo organizacional mientras el sistema asegura el cumplimiento de todas las obligaciones salariales y legales. 
-
-        Mediante un manejo preciso de datos y un seguimiento confiable de la información de los empleados, nuestro sistema garantiza exactitud en el cálculo de salarios, prestaciones, y deducciones, promoviendo así un ambiente laboral justo y motivador. Nos comprometemos a construir una plataforma que no solo respalde la operatividad diaria, sino que también se adapte a las necesidades de crecimiento de nuestros usuarios, ayudando a potenciar el bienestar, compromiso y desarrollo profesional de todos sus colaboradores.
+        Nuestra visión es ofrecer un sistema de nómina integral y de alto rendimiento, <br><br>
+        diseñado para ser eficiente, transparente y seguro. Aspiramos a simplificar y <br><br>
+        optimizar todos los procesos relacionados con la gestión de nómina y la administración <br><br>
+        de recursos humanos, permitiendo a nuestros clientes centrarse en su desarrollo <br><br>
+        organizacional mientras el sistema asegura el cumplimiento de todas las obligaciones salariales y legales. 
     </p>
 </main>
 </div>
