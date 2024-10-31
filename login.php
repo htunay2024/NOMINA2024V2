@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
-<button class="top-right-button" onclick="toggleLoginAside()">INICIAR SESIÓN</button>
 <div class="square"></div>
 <div class="content">
     <h1>Bienvenido a TConsulting</h1>
@@ -65,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required pattern="[a-zA-Z0-9]*">
         </div>
+        <button type="submit">Iniciar Sesión</button>
     </form>
 </aside>
 </body>
