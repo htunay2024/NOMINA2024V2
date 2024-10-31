@@ -162,3 +162,11 @@ footer {
     }
 }
 
+.policy-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+    padding: 20px; /* Espacio alrededor del texto */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle relieve */
+    max-width: 800px; /* Ancho máximo para el recuadro */
+    margin: auto; /* Centra el recuadro */
+}
