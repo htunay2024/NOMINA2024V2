@@ -12,15 +12,26 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Poppins', sans-serif; /* Nueva fuente */
+    font-family: 'Poppins', sans-serif;
     overflow: hidden;
-    background-image: url('../Imagenes/nominailustracion.webp');
+    color: #ffffff;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../NOMINA2024V2/Imagenes/nominailustracion.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    opacity: 0.7; /* Hacemos el fondo más opaco */
+    z-index: -1;
 }
 
-/* Estilo del formulario */
 .form-group {
     margin-bottom: 15px;
 }
@@ -30,17 +41,17 @@ input {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    font-family: 'Poppins', sans-serif; /* Nueva fuente */
+    font-family: 'Poppins', sans-serif;
 }
 
 button {
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
-    background-color: #007bff; /* Azul */
+    background-color: #007bff; /* Azul contrastante */
     color: white;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif; /* Nueva fuente */
+    font-family: 'Poppins', sans-serif;
     animation: slideUp 1s ease-out forwards;
 }
 
@@ -48,7 +59,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Animación para el botón de abajo hacia arriba */
 @keyframes slideUp {
     from {
         transform: translateY(100vh);
