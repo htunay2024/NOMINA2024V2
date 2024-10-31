@@ -14,7 +14,7 @@ body, html {
     align-items: center;
     font-family: 'Poppins', sans-serif; /* Nueva fuente */
     overflow: hidden;
-    background-image: url('../NOMINA2024V2/Imagenes/nominailustracion.webp');
+    background-image: url('../Imagenes/nominailustracion.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
