@@ -1,11 +1,11 @@
 <?php
-require_once '../Data/ComisionesODB.php';
-require_once '../Data/EmpleadoODB.php';
-require_once '../Data/PolizaODB.php';
+require_once '../Controller/Comisiones_C.php';
+require_once '../Controller/Empleado_C.php';
+require_once '../Controller/Poliza_C.php';
 
-$comisionesODB = new ComisionesODB();
-$empleadoODB = new EmpleadoODB();
-$polizaODB = new PolizaODB();
+$comisionesODB = new Comisiones_C();
+$empleadoODB = new Empleado_C();
+$polizaODB = new Poliza_C();
 
 $idComision = $_GET['ID_Comision'] ?? null;
 
@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -164,4 +165,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </footer>
 </body>
 </html>
-
