@@ -1,8 +1,8 @@
 <?php
 require_once '../Model/Usuario.php';
-require_once '../Data/UsuarioODB.php';
+require_once '../Controller/Usuario_C.php';
 
-$usuarioDB = new UsuarioODB();
+$usuarioDB = new Usuario_C ();
 $usuarios = $usuarioDB->getAll();
 
 ?>
