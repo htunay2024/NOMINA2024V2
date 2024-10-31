@@ -1,9 +1,9 @@
 <?php
 
 require_once '../Model/HistorialPagosPrestamos.php';
-require_once '../Data/HistorialPagosPrestamosODB.php';
+require_once '../Controller/HistorialPagosPrestamos_C.php';
 
-$historialODB = new HistorialPagosPrestamosODB();
+$historialODB = new HistorialPagosPrestamos_C();
 
 // Obtener todo el historial de pagos para mostrar en la tabla
 $historialPagos = $historialODB->getAll();
