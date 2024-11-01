@@ -31,24 +31,22 @@ header h1 {
 }
 
 #container {
-    display: flex; /* Usar flexbox para alinear el menú y el contenido */
-    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
-    position: relative; /* Necesario para el pseudo-elemento en main */
+    display: flex;
+    min-height: 100vh;
+    position: relative;
 }
 
-/* Estilo para el aside */
+/* Estilo para el menu */
 aside {
     position: fixed;
     left: -250px; /* Oculto inicialmente */
     top: 0;
     width: 250px;
     height: 100%;
-    background-color: #2980b9; /* Color de fondo del menú */
+    background-color: #2980b9; 
     transition: left 0.3s ease; /* Transición suave para mostrar/ocultar el menú */
     z-index: 1000;
 }
-
-/* Estilo cuando el menú está visible */
 aside.active {
     left: 0; /* Muestra el menú desplazándolo hacia la derecha */
 }
@@ -60,7 +58,7 @@ aside nav ul {
 }
 
 aside nav ul li {
-    position: relative; /* Necesario para que el submenú sea posicionado dentro del contenedor principal */
+    position: relative; /*submenú dentro del contenedor principal */
 }
 
 aside nav ul li a {
@@ -85,7 +83,7 @@ aside nav ul li ul {
     left: 100%;
     top: 0;
     padding: 0;
-    background-color: #e3e852; /* Fondo del submenú */
+    background-color: #e3e852;
     z-index: 1000;
 }
 
@@ -97,7 +95,7 @@ aside nav ul li ul li a {
 }
 
 aside nav ul li ul li a:hover {
-    background-color: #5ac54a; /* Color de fondo al pasar el ratón sobre subelementos */
+    background-color: #5ac54a;
 }
 
 /* Mostrar el submenú al hacer hover sobre el elemento principal */
@@ -107,37 +105,37 @@ aside nav ul li:hover > ul {
 
 main {
     padding: 3rem;
-    margin-left: 0; /* Sin margen inicial */
-    transition: margin-left 0.3s ease; /* Transición suave para el margen */
-    flex-grow: 1; /* Permite que el contenido principal ocupe el espacio disponible */
-    position: relative; /* Necesario para el pseudo-elemento */
-    background-color: rgba(255, 255, 255, 0); /* Color de fondo semitransparente para el contenido */
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+    flex-grow: 1;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0);
 }
 main::before {
-    content: ""; /* Crea un pseudo-elemento */
-    position: absolute; /* Posiciona el pseudo-elemento */
+    content: "";
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../Imagenes/TConsulting.jpg'); /* Cambia la ruta a tu imagen */
-    background-size: contain; /* Mantiene la relación de aspecto de la imagen y la muestra completa */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-position: center; /* Centra la imagen */
-    z-index: 0; /* Coloca el pseudo-elemento detrás del contenido */
-    filter: blur(5px) contrast(1) brightness(0.9); /* Ajusta el brillo para decolorar (0.0 es negro, 1.0 es original) */;
+    background-image: url('../Imagenes/TConsulting.jpg'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+    filter: blur(5px) contrast(1) brightness(0.9); ;
 
 }
 
 main h2, main p {
-    position: relative; /* Asegura que el texto esté encima del pseudo-elemento */
-    z-index: 1; /* Asegura que el texto esté encima del fondo */
-    color: #333; /* Color del texto */
+    position: relative;
+    z-index: 1; 
+    color: #333;
 }
 
 /* Ajustes cuando el menú está visible */
 main.shifted {
-    margin-left: 250px; /* Mueve el contenido hacia la derecha cuando el menú está visible */
+    margin-left: 250px;
 }
 
 /* Estilos para el footer */
@@ -154,11 +152,10 @@ footer {
 /* Estilos responsive */
 @media (max-width: 768px) {
     aside {
-        width: 200px; /* Reduce el ancho en pantallas pequeñas */
+        width: 200px; 
     }
 
     main.shifted {
-        margin-left: 200px; /* Ajusta el margen en pantallas pequeñas */
+        margin-left: 200px;
     }
 }
-
