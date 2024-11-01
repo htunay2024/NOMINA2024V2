@@ -4,14 +4,12 @@ require_once '../Model/Comisiones.php';
 
 class Comisiones_C {
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection(); // Obtén la conexión aquí
         if ($this->connection === null) {
             die("Error: No se pudo establecer la conexión con la base de datos.");
         }
     }
-
     // Obtener todas las comisiones de un empleado
     public function getAll() : array {
         $query = "EXEC MostrarComisionesVentaS";
@@ -19,7 +17,6 @@ class Comisiones_C {
         try {
             $stmt->execute();
             $comisiones = [];
-
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Aquí creas objetos de la clase Comisiones
                 $comision = new Comisiones(
@@ -35,7 +32,6 @@ class Comisiones_C {
                 );
                 $comisiones[] = $comision;
             }
-
             return $comisiones;
         } catch (PDOException $e) {
             throw new Exception("Error en la consulta: " . $e->getMessage());
@@ -47,14 +43,11 @@ class Comisiones_C {
             $sql = "EXEC [dbo].[BuscarComisionesPorEmpleado] :ID_Comision";
             $stmt = $this->connection->prepare($sql);
             $stmt->bindParam(':ID_Comision', $ID_Comision, PDO::PARAM_INT);
-
             // Ejecutar el procedimiento almacenado
             $stmt->execute();
-
             // Retornar los resultados
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
-
         } catch (PDOException $e) {
             // Manejo de errores
             echo "Error: " . $e->getMessage();
@@ -62,9 +55,6 @@ class Comisiones_C {
         }
     }
 
-
-
-    // Insertar una nueva comisión y póliza
     public function insertarComisionYPoliza($mes, $anio, $montoVentas, $porcentaje, $comision, $idEmpleado, $descripcion) {
         $query = "EXEC InsertarComisionYPoliza :Mes, :Anio, :Monto_Ventas, :Porcentaje, :Comision, :ID_Empleado, :Descripcion";
         $stmt = $this->connection->prepare($query);
@@ -78,8 +68,6 @@ class Comisiones_C {
         $stmt->execute();
     }
 
-
-    // Modificar una comisión existente
     public function update($idComision, $mes, $anio, $montoVentas, $porcentaje, $idEmpleado, $descripcion) {
         $query = "EXEC ModificarComisionVentas :ID_Comision, :Mes, :Anio, :Monto_Ventas, :Porcentaje, :ID_Empleado, :Descripcion";
         $stmt = $this->connection->prepare($query);
@@ -93,7 +81,6 @@ class Comisiones_C {
         $stmt->execute();
     }
 
-    // Borrar una comisión y su póliza asociada
     public function delete($idComision) {
         $query = "EXEC BorrarComisionVentas :ID_Comision";
         $stmt = $this->connection->prepare($query);
