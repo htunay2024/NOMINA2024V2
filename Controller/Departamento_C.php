@@ -4,14 +4,13 @@ require_once '../Model/Departamento.php';
 
 class Departamento_C {
     private $connection;
-
     public function __construct() {
-        $this->connection = SQLSRVConnector::getInstance()->getConnection(); // Obtén la conexión aquí
+        $this->connection = SQLSRVConnector::getInstance()->getConnection();
         if ($this->connection === null) {
             die("Error: No se pudo establecer la conexión con la base de datos.");
         }
     }
-
+    
     public function getAll() : array {
         $query = "SELECT ID_Departamento, Departamento FROM Departamento";
         $result = $this->connection->query($query);
