@@ -1,10 +1,10 @@
 <?php
 
-require_once '../Controller/Poliza_C.php';
-require_once '../Controller/Prestamo_C.php';
+require_once '../Data/PolizaODB.php';
+require_once '../Data/PrestamoODB.php';
 require_once '../Model/HistorialPagosPrestamos.php';
-require_once '../Controller/HistorialPagosPrestamos_C.php';
-require_once '../Controller/Empleado_C.php';
+require_once '../Data/HistorialPagosPrestamosODB.php';
+require_once '../Data/EmpleadoODB.php';
 
 $idPrestamo = $_GET['ID_Prestamo'] ?? null;
 
@@ -12,7 +12,7 @@ $monto = $noCuota = $saldoPendiente = $nombreEmpleado = $idPoliza = $idEmpleado 
 
 // Verificar si se obtuvo el ID_Prestamo y buscar los datos asociados
 if ($idPrestamo) {
-    $prestamoODB = new Prestamo_C ();
+    $prestamoODB = new PrestamoODB();
     $prestamo = $prestamoODB->getPagoPorPrestamoId($idPrestamo); // Obtener datos del préstamo mediante el ID_Prestamo
     if ($prestamo) {
         $monto = $prestamo->getMonto();
@@ -34,7 +34,7 @@ $nuevoSaldo = $saldoPendiente - $monto;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Registrar_Pago'])) {
     $fecha = date('Y-m-d'); // Fecha actual del sistema
 
-    $historialPagosODB = new HistorialPagosPrestamos_C();
+    $historialPagosODB = new HistorialPagosPrestamosODB();
 
     // Crear objeto de pago
     $nuevoPago = new HistorialPagosPrestamos(

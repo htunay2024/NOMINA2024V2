@@ -1,9 +1,9 @@
 <?php
 
 require_once '../Model/Poliza.php';
-require_once '../Controller/Poliza_C.php';
+require_once '../Data/PolizaODB.php';
 
-$polizaContableODB = new Poliza_C ();
+$polizaContableODB = new PolizaODB();
 $idPoliza = $_GET['ID_Poliza'] ?? null; // Verifica que este valor sea correcto
 
 // Obtener todas las pólizas para mostrar en la tabla
@@ -46,68 +46,48 @@ if ($idPoliza) {
 
 <body>
 <header>
-    <img src="../Imagenes/T%20Consulting.jpg" alt="Logo de T Consulting" style="height: 50px; vertical-align: middle;">
     <h1>Gestión de Pólizas Contables</h1>
-    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <button onclick="cerrarSesion()" class="btn btn-eliminar">Cerrar Sesión</button>
 </header>
-
-<aside id="sideMenu">
-        <nav>
+<nav>
+    <ul>
+        <li>
+            <a href="#">RRHH</a>
             <ul>
-                <li><a href="index1.php">Inicio</a></li>
-                <li>
-                    <a href="#">Recursos Humanos</a>
-                    <ul>
-                        <li><a href="v.empleados.php">Empleado</a></li>
-                        <li><a href="v.usuarios.php">Usuario</a></li>
-                        <li><a href="v.Expediente.php">Expediente</a></li>
-                        <li><a href="v.ausencias.php">Permiso</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Pago de Nómina</a>
-                    <ul>
-                        <li><a href="v.HistorialPagos.php">Historial de Pagos</a></li>
-                        <li><a href="v.HistorialPagosPrestamos.php">Pagos de Préstamos</a></li>
-                        <li><a href="v.IGSS.php">IGSS</a></li>
-                        <li><a href="v.INTECAP.php">INTECAP</a></li>
-                        <li><a href="v.IRTRA.php">IRTRA</a></li>
-                        <li><a href="v.nomina.php">Nómina General</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Contabilidad</a>
-                    <ul>
-                        <li><a href="v.horasextras.php">Horas Extras</a></li>
-                        <li><a href="v.produccion.php">Bonificaciones por Producción</a></li>
-                        <li><a href="v.comisiones.php">Comisiones sobre Ventas</a></li>
-                        <li><a href="v.Poliza.php">Pólizas Contables</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Compras y Almacén</a>
-                    <ul>
-                        <li><a href="v.compra.php">Registro de Compras</a></li>
-                        <li><a href="v.HistorialCompras.php">Historial de Compras</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Prestamos</a>
-                    <ul>
-                        <li><a href="v.prestamo.php">Deuda de Préstamos</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Tienda Solidaria</a>
-                    <ul>
-                        <li><a href="v.tienda.php">Registros de Tienda</a></li>
-                    </ul>
-                </li>
+                <li><a href="v.empleados.php">Empleados</a></li>
+                <li><a href="v.Expediente.php">Expedientes</a></li>
+                <li><a href="v.ausencias.php">Permisos</a></li>
             </ul>
-        </nav>
-    </aside>    
-    
-    
+        </li>
+        <li>
+            <a href="#">Nómina</a>
+            <ul>
+                <li><a href="v.nomina.php">Pagos</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Contabilidad</a>
+            <ul>
+                <li><a href="v.Poliza.php">Polizas Contables</a></li>
+                <li><a href="v.horasextras.php">Horas Extras</a></li>
+                <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
+                <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">BANTRAB</a>
+            <ul>
+                <li><a href="v.prestamo.php">Prestamos</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Tienda</a>
+            <ul>
+                <li><a href="v.tienda.php">Registro de Tienda</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 <main>
     <section class="Polizas">
         <h2>Pólizas Registradas</h2>
@@ -153,11 +133,9 @@ if ($idPoliza) {
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function toggleMenu() {
-        const sideMenu = document.querySelector('aside');
-        const mainContent = document.querySelector('main');
-        sideMenu.classList.toggle('active');
-        mainContent.classList.toggle('shifted');
+    function cerrarSesion() {
+        // Redirige al usuario a la página index.php
+        window.location.href = '../index.html';
     }
 </script>
 </body>

@@ -1,8 +1,8 @@
 <?php
-require_once '../Controller/Tienda_C.php';
+require_once '../Data/TiendaODB.php';
 require_once '../Model/Tienda.php';
 
-$tiendaODB = new Tienda_C ();
+$tiendaODB = new TiendaODB();
 
 $Compra = $_GET['Compra'] ?? null;
 
@@ -80,3 +80,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $compra) {
 
 </body>
 </html>
+
+

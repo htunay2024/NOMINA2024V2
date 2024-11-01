@@ -1,8 +1,8 @@
 <?php
 require_once '../Model/Usuario.php';
-require_once '../Controller/Usuario_C.php';
+require_once '../Data/UsuarioODB.php';
 
-$usuarioDB = new Usuario_C();
+$usuarioDB = new UsuarioODB();
 $usuarios = $usuarioDB->getAll();
 
 ?>
@@ -19,15 +19,57 @@ $usuarios = $usuarioDB->getAll();
 <body>
     <header>
         <h1>Gestión de Usuarios</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="#" class="active">Usuarios</a></li>
-                <li><a href="crear_usuario.php">Nuevo Usuario</a></li> <!-- Enlace para crear un nuevo usuario -->
-                <li><a href="roles.php">Roles</a></li>
-            </ul>
-        </nav>
     </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="#">RRHH</a>
+                <ul>
+                    <li><a href="v.empleados.php">Empleados</a></li>
+                    <li><a href="v.usuarios.php">Usuarios</a></li>
+                    <li><a href="v.Expediente.php">Expedientes</a></li>
+                    <li><a href="v.ausencias.php">Permisos</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Nómina</a>
+                <ul>
+                    <li><a href="#">Pagos</a></li>
+                    <li><a href="#">Deducciones</a></li>
+                    <li><a href="#">Bonificaciones</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Contabilidad</a>
+                <ul>
+                    <li><a href="v.Poliza.php">Polizas Contables</a></li>
+                    <li><a href="v.horasextras.php">Horas Extras</a></li>
+                    <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
+                    <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
+                    <li><a href="#">Reportes Financieros</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">BANTRAB</a>
+                <ul>
+                    <li><a href="v.prestamo.php">Prestamos</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Tienda</a>
+                <ul>
+                    <li><a href="v.tienda.php">Registro de Tienda</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Configuración</a>
+                <ul>
+                    <li><a href="#">Ajustes Generales</a></li>
+                    <li><a href="#">Seguridad</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
     <main>
         <section class="usuarios">
             <h2>Usuarios Registrados</h2>
@@ -44,13 +86,13 @@ $usuarios = $usuarioDB->getAll();
                 <tbody>
                     <?php foreach ($usuarios as $usuario) : ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($usuario->getIdUsuario()); ?></td>
+                            <td><?php echo htmlspecialchars($usuario->getID_Usuario()); ?></td>
                             <td><?php echo htmlspecialchars($usuario->getCorreo()); ?></td>
-                            <td><?php echo htmlspecialchars($usuario->getIdRol()); ?></td>
-                            <td><?php echo htmlspecialchars($usuario->getEmpresa()); ?></td>
+                            <td><?php echo htmlspecialchars($usuario->getRol()); ?></td>
+                            <td><?php echo htmlspecialchars($usuario->getEstado() == 1 ? 'Activo' : 'Inactivo'); ?></td>
                             <td>
-                                <a href="editar_usuario.php?id=<?php echo $usuario->getIdUsuario(); ?>">Editar</a>
-                                <a href="eliminar_usuario.php?id=<?php echo $usuario->getIdUsuario(); ?>">Eliminar</a>
+                                <a href="editar_usuario.php?id=<?php echo $usuario->getID_Usuario(); ?>" class="btn btn-editar">Editar</a>
+                                <a href="eliminar_usuario.php?id=<?php echo $usuario->getID_Usuario(); ?>" class="btn btn-eliminar" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -58,5 +100,9 @@ $usuarios = $usuarioDB->getAll();
             </table>
         </section>
     </main>
+    <footer>
+        <p>&copy; <?php echo date("Y"); ?> T Consulting 2024</p>
+    </footer>
 </body>
+
 </html>

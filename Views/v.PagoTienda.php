@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Controller/Tienda_C.php'; // Asegúrate de tener el archivo correcto
+require_once '../Data/TiendaODB.php'; // Asegúrate de tener el archivo correcto
 require_once '../Model/Tienda.php'; // Asegúrate de tener el archivo correcto
 
 $idCompra = $_GET['ID_Compra'] ?? null;
@@ -9,7 +9,7 @@ $monto = $noCuota = $saldoPendiente = $nombreEmpleado = $cuentaContable = null;
 
 // Verificar si se obtuvo el ID_Compra y buscar los datos asociados
 if ($idCompra) {
-    $tiendaODB = new Tienda_C ();
+    $tiendaODB = new TiendaODB();
     $datosCompra = $tiendaODB->getDatosCompra($idCompra); // Obtener datos de la compra mediante el ID_Compra
     if ($datosCompra) {
         $monto = $datosCompra->getSaldoPendiente()/6; // Cambia esto si necesitas otro valor
@@ -83,3 +83,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Registrar_Pago'])) {
 </footer>
 </body>
 </html>
+

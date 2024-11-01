@@ -1,8 +1,8 @@
 <?php
 require_once '../Model/HistorialPagosPrestamos.php';
-require_once '../Controller/HistorialPagosPrestamos_C.php';
+require_once '../Data/HistorialPagosPrestamosODB.php';
 
-$historialODB = new HistorialPagosPrestamos_C();
+$historialODB = new HistorialPagosPrestamosODB();
 
 // Verificar si se ha recibido el ID_Prestamo desde una solicitud GET
 $ID_Prestamo = isset($_GET['ID_Prestamo']) ? $_GET['ID_Prestamo'] : null;

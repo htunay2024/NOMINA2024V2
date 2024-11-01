@@ -1,9 +1,9 @@
 <?php
-require_once '../Controller/Prestamo_C.php';
-require_once '../Controller/Empleado_C.php';
+require_once '../Data/PrestamoODB.php';
+require_once '../Data/EmpleadoODB.php';
 
-$prestamoODB = new Prestamo_C();
-$empleadoODB = new Empleado_C();
+$prestamoODB = new PrestamoODB();
+$empleadoODB = new EmpleadoODB();
 
 // Obtener la lista de empleados
 $empleados = $empleadoODB->getAll();

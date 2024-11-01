@@ -1,9 +1,9 @@
 <?php
 
 require_once '../Model/Tienda.php';
-require_once '../Controller/Tienda_C.php';
+require_once '../Data/TiendaODB.php';
 
-$tiendaODB = new Tienda_C();
+$tiendaODB = new TiendaODB();
 
 // Verificar si se ha enviado un ID_Empleado
 if (isset($_GET['ID_Empleado'])) {
