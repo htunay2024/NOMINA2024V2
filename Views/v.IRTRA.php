@@ -1,7 +1,7 @@
 <?php
 
 require_once '../Model/IRTRA.php';
-require_once '../Data/IRTRA_C.php';
+require_once '../Controller/IRTRA_C.php';
 
 $irtraODB = new IRTRA_C();
 
