@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Controller/UsuarioOBD.php';
+require_once 'Controller/UsuarioODB.php';
 require_once 'Model/Usuario.php';
 
 $error = '';
@@ -13,14 +13,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!preg_match('/^[a-zA-Z0-9]*$/', $usuario) || !preg_match('/^[a-zA-Z0-9]*$/', $password)) {
         $error = "Usuario o contraseña contienen caracteres no permitidos.";
     } else {
-        $usuarioODB = new UsuarioOBD();
+        $usuarioODB = new UsuarioODB();
         $usuarioAutenticado = $usuarioODB->login($usuario, $password);
 
         if ($usuarioAutenticado) {
             $_SESSION['usuario_id'] = $usuarioAutenticado->getidUsuario();
             $_SESSION['usuario_nombre'] = $usuarioAutenticado->getCorreo();
             $_SESSION['rol'] = $usuarioAutenticado->getIdRol();
-            header("Location: Views/indexAdmon.php");
+            switch ($_SESSION['rol']) {
+                case '1': // Si es administrador
+                    header("Location: Views/indexAdmon.php");
+                    break;
+                case '5': // Si es otro rol, puedes definir más casos
+                    header("Location: Views/indexRRHH.php");
+                    break;
+                default:
+                    header("Location: Views/indexDefault.php"); // Página predeterminada
+                    break;
+            }
             exit();
         } else {
             $error = "Usuario o contraseña incorrectos.";
@@ -44,9 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
+<button class="top-right-button" onclick="toggleLoginAside()">INICIAR SESIÓN</button>
 <div class="square"></div>
 <div class="content">
-    <h1>Bienvenido</h1>
+    <h1>Bienvenido a TConsulting</h1>
+    <p>Tu Solución en Gestión de nómina</p>
 </div>
 
 <!-- Aside para el formulario de inicio de sesión -->
