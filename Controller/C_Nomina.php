@@ -5,7 +5,6 @@ require_once '../Model/Nomina.php';
 class C_Nomina
 {
     private $connection;
-
     public function __construct()
     {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
@@ -13,7 +12,6 @@ class C_Nomina
             die("Error: No se pudo establecer la conexión con la base de datos.");
         }
     }
-
     // Función para ejecutar el procedimiento almacenado GenerarNomina y devolver array de objetos Nomina
     public function generarNomina()
     {
@@ -29,15 +27,12 @@ class C_Nomina
             if (!$stmtMostrar) {
                 throw new Exception("Error al ejecutar la consulta MostrarNomina: " . implode(", ", $this->connection->errorInfo()));
             }
-
             // Usamos fetchAll para obtener todos los resultados de una vez
             $rows = $stmtMostrar->fetchAll(PDO::FETCH_ASSOC);
-
             if (empty($rows)) {
                 // Manejo del caso en que no hay resultados
                 return []; // Devuelve un array vacío
             }
-
             $nominas = [];
             foreach ($rows as $row) {
                 $nominas[] = new Nomina(
@@ -62,7 +57,6 @@ class C_Nomina
                     $row['NombreCompleto']
                 );
             }
-
             return $nominas; // Devuelve el array de objetos Nomina
         } catch (PDOException $e) {
             echo "Error de base de datos: " . $e->getMessage();
