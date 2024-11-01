@@ -1,5 +1,4 @@
 <?php
-
 require_once 'SQLSRVConnector.php';
 require_once '../Model/Poliza.php';
 require_once '../Model/Comisiones.php';
@@ -7,7 +6,6 @@ require_once '../Model/Produccion.php';
 
 class Poliza_C {
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
         if ($this->connection === null) {
@@ -16,7 +14,7 @@ class Poliza_C {
     }
 
     public function getAll(): array {
-        $query = "EXEC MostrarPoliza"; // Llamar al procedimiento para mostrar todas las pólizas
+        $query = "EXEC MostrarPoliza";
         $result = $this->connection->query($query);
 
         $polizas = [];
@@ -32,7 +30,6 @@ class Poliza_C {
             );
             array_push($polizas, $poliza);
         }
-
         return $polizas;
     }
 
@@ -43,7 +40,6 @@ class Poliza_C {
             $stmt->bindParam(':ID_Poliza', $idPoliza, PDO::PARAM_INT);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
             if ($row) {
                 return new Poliza(
                     $row['ID_Poliza'],
@@ -66,10 +62,8 @@ class Poliza_C {
         $query = "EXEC BuscarComisionesPorPoliza @ID_Poliza = :idPoliza";
         $stmt = $this->connection->prepare($query);
 
-        // Usar bindValue en vez de bind_param
         $stmt->bindValue(':idPoliza', $idPoliza, PDO::PARAM_INT);
-
-        // Ejecutar la consulta
+        
         $stmt->execute();
 
         $comisiones = [];
@@ -88,9 +82,7 @@ class Poliza_C {
             );
             array_push($comisiones, $comision);
         }
-
         return $comisiones;
     }
 }
-
 ?>
