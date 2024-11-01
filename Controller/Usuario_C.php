@@ -1,19 +1,16 @@
 <?php
-
 require_once 'SQLSRVConnector.php';
 require_once 'Model/Usuario.php';
 
 class Usuario_C {
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
     }
 
     public function getAll() {
-        $query = "SELECT
-                    U.ID_Usuario, U.Correo, U.ID_Rol, U.Estado, R.Nombre AS Rol
-                FROM Usuario U INNER JOIN Rol R ON U.ID_Rol = R.ID_Rol";
+        $query = "SELECT U.ID_Usuario, U.Correo, U.ID_Rol, U.Estado, R.Nombre AS Rol
+        FROM Usuario U INNER JOIN Rol R ON U.ID_Rol = R.ID_Rol";
         $result = $this->connection->query($query);
         $usuarios = [];
         while ($row = $result->fetch()) {
@@ -24,10 +21,8 @@ class Usuario_C {
     }
 
     public function getById($id) {
-        $query = "SELECT
-                    U.ID_Usuario, U.Correo, U.Contrasena, U.ID_Rol, U.Estado, R.Nombre AS Rol
-                FROM Usuario U INNER JOIN Rol R ON U.ID_Rol = R.ID_Rol
-                WHERE U.ID_Usuario = ?";
+        $query = "SELECT U.ID_Usuario, U.Correo, U.Contrasena, U.ID_Rol, U.Estado, R.Nombre AS Rol
+        FROM Usuario U INNER JOIN Rol R ON U.ID_Rol = R.ID_Rol WHERE U.ID_Usuario = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(1, $id);
         $stmt->execute();
@@ -69,7 +64,6 @@ class Usuario_C {
         $stmt->bindParam(':usuario', $usuario);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
-
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
             return new Usuario(
