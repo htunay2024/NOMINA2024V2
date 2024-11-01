@@ -24,186 +24,152 @@ $empleados = $empleadoODB->getAll();
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Empleados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Empleado</title>
     <link rel="stylesheet" href="../Styles/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
-</head>
 
+    <script>
+        // Validar la longitud de caracteres en Nombre y Apellido
+        function validarLongitud(input, maxLength) {
+            if (input.value.length > maxLength) {
+                input.setCustomValidity("Este campo no puede tener más de " + maxLength + " caracteres.");
+            } else {
+                input.setCustomValidity(""); // Restablecer si es válido
+            }
+        }
+
+        // Validar que solo se ingresen números en el campo de Cuenta Contable
+        function validarNumeros(input) {
+            const regex = /^[0-9]*$/; // Solo números
+            if (!regex.test(input.value)) {
+                input.setCustomValidity("Solo se permiten números.");
+            } else {
+                input.setCustomValidity(""); // Restablecer si es válido
+            }
+        }
+
+        // Validar fecha de nacimiento
+        function validarFechaNacimiento() {
+            var fechaNacimiento = new Date(document.getElementById('Fecha_Nac').value);
+            var fechaActual = new Date();
+
+            var fechaMinima = new Date();
+            fechaMinima.setFullYear(fechaActual.getFullYear() - 70);
+
+            var fechaMaxima = new Date();
+            fechaMaxima.setFullYear(fechaActual.getFullYear() - 18);
+
+            if (fechaNacimiento < fechaMinima || fechaNacimiento > fechaMaxima) {
+                document.getElementById('Fecha_Nac').setCustomValidity("Debe ser mayor de 18 años y menor de 70.");
+                return false;
+            } else {
+                document.getElementById('Fecha_Nac').setCustomValidity(""); // Restablecer si es válido
+                return true;
+            }
+        }
+
+        function validarFechaContratacion() {
+            var fechaContratacion = new Date(document.getElementById('Fecha_Contra').value);
+            var fechaActual = new Date();
+
+            if (fechaContratacion > fechaActual) {
+                document.getElementById('Fecha_Contra').setCustomValidity("La fecha de contratación no puede ser futura.");
+                return false;
+            } else {
+                document.getElementById('Fecha_Contra').setCustomValidity(""); // Restablecer si es válido
+                return true;
+            }
+        }
+
+        // Validación del formulario al enviar
+        function validarFormulario() {
+            return validarFechaNacimiento() && validarFechaContratacion();
+        }
+    </script>
+
+</head>
 <body>
 <header>
-    <h1>Gestión de Empleados</h1>
-    <button onclick="cerrarSesion()" class="btn btn-eliminar">Cerrar Sesión</button>
+    <h1>Editar Empleado</h1>
+    <nav>
+        <ul>
+            <li><a href="v.empleados.php">REGRESAR</a></li>
+        </ul>
+    </nav>
 </header>
-<nav>
-    <ul>
-        <li>
-            <a href="#">RRHH</a>
-            <ul>
-                <li><a href="v.empleados.php">Empleados</a></li>
-                <li><a href="v.Expediente.php">Expedientes</a></li>
-                <li><a href="v.ausencias.php">Permisos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Nómina</a>
-            <ul>
-                <li><a href="v.nomina.php">Pagos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Contabilidad</a>
-            <ul>
-                <li><a href="v.Poliza.php">Polizas Contables</a></li>
-                <li><a href="v.horasextras.php">Horas Extras</a></li>
-                <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
-                <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">BANTRAB</a>
-            <ul>
-                <li><a href="v.prestamo.php">Prestamos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Tienda</a>
-            <ul>
-                <li><a href="v.tienda.php">Registro de Tienda</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-<main>
-    <section class="Empleados">
-        <h2>Empleados Registrados</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th class="text-wrap">Fecha de Nacimiento</th>
-                    <th class="text-wrap">Fecha de Contratación</th>
-                    <th>Salario Base</th>
-                    <th>Departamento</th>
-                    <th>No. Cuenta</th>
-                    <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($empleados as $empleado) : ?>
-                    <tr>
-                        <td class="nombre"><?php echo htmlspecialchars($empleado->getNombre()); ?></td>
-                        <td class="apellido"><?php echo htmlspecialchars($empleado->getApellido()); ?></td>
-                        <td><?php echo htmlspecialchars($empleado->getFechaNacimiento()); ?></td>
-                        <td><?php echo htmlspecialchars($empleado->getFechaContratacion()); ?></td>
-                        <td><?php echo htmlspecialchars($empleado->getSalarioBase()); ?></td>
-                        <td><?php echo htmlspecialchars($empleado->getDepartamento()->getNombre()); ?></td>
-                        <td><?php echo htmlspecialchars($empleado->getCuentaContable()); ?></td>
 
-                        <td>
-                            <a href="v.editar.empleado.php?ID_Empleado=<?php echo $empleado->getIdEmpleado(); ?>" class="btn btn-editar">Editar</a>
-                            <button class="btn btn-eliminar" data-id="<?php echo $empleado->getIdEmpleado(); ?>">Eliminar</button>
-                            <button class="employee-button" onclick="showEmployeePhoto('<?php echo $empleado->getFoto(); ?>')">Ver Foto</button>
-                            <a href="v.familiar.php?ID_Empleado=<?php echo $empleado->getIdEmpleado(); ?>" class="btn btn-editar">Familiares</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-        <button class="btn-nuevo">Agregar Nuevo Empleado +</button>
-        <div id="photoModal" class="photo-modal" style="display: none;">
-            <span class="close" onclick="hideEmployeePhoto()">×</span>
-            <div class="modal-content">
-                <img id="employeePhoto" src="" alt="Foto del Empleado">
+<main>
+    <section class="form-section">
+        <h2>Modificar Empleado</h2>
+        <form id="empleadoForm" action="v.editar.empleado.php?ID_Empleado=<?php echo htmlspecialchars($idEmpleado); ?>" method="POST" enctype="multipart/form-data" class="form-crear-editar">
+            <input type="hidden" name="ID_Empleado" value="<?php echo htmlspecialchars($idEmpleado); ?>">
+
+            <div class="form-group">
+                <label for="Nombre">Nombre:</label>
+                <input type="text" id="Nombre" name="Nombre" value="<?php echo htmlspecialchars($empleado->getNombre()); ?>" required maxlength="50" oninput="validarLongitud(this, 50)" title="El nombre no puede tener más de 50 caracteres.">
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="Apellido">Apellido:</label>
+                <input type="text" id="Apellido" name="Apellido" value="<?php echo htmlspecialchars($empleado->getApellido()); ?>" required maxlength="50" oninput="validarLongitud(this, 50)" title="El apellido no puede tener más de 50 caracteres.">
+            </div>
+
+            <div class="form-group">
+                <label for="Fecha_Nac">Fecha de Nacimiento:</label>
+                <input type="date" id="Fecha_Nac" name="Fecha_Nac" value="<?php echo htmlspecialchars($empleado->getFechaNacimiento()); ?>" required title="Debe ser mayor de 18 años y menor de 100." oninput="validarFechaNacimiento()">
+            </div>
+
+            <div class="form-group">
+                <label for="Fecha_Contra">Fecha de Contratación:</label>
+                <input type="date" id="Fecha_Contra" name="Fecha_Contra" value="<?php echo htmlspecialchars($empleado->getFechaContratacion()); ?>" required title="La fecha de contratación no puede ser futura." oninput="validarFechaContratacion()">
+            </div>
+
+            <div class="form-group">
+                <label for="Salario_Base">Salario Base:</label>
+                <input type="number" id="salario_base" name="Salario_Base" value="<?php echo htmlspecialchars($empleado->getSalarioBase()); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="Depto_ID">Departamento:</label>
+                <select id="depto_id" name="Depto_ID" required>
+                    <option value="">Seleccionar...</option>
+                    <?php foreach ($departamentos as $departamento) : ?>
+                        <option value="<?php echo htmlspecialchars($departamento->getIdDepartamento()); ?>"
+                            <?php echo $empleado->getDepartamento()->getIdDepartamento() === $departamento->getIdDepartamento() ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($departamento->getNombre()); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Cuenta_Contable">Cuenta Contable:</label>
+                <input type="text" id="cuentaContable" name="Cuenta_Contable" value="<?php echo htmlspecialchars($empleado->getCuentaContable()); ?>" required>
+            </div>
+            <input type="hidden" name="FotoActual" value="<?php echo htmlspecialchars($empleado->getFoto()); ?>">
+            <div class="form-group">
+                <label for="Foto">Foto Actual:</label>
+                <?php if ($empleado->getFoto()) : ?>
+                    <img src="<?php echo htmlspecialchars($empleado->getFoto()); ?>" alt="Foto del empleado" style="width: 100px; height: 100px;">
+                <?php else : ?>
+                    <p>No se ha subido una foto.</p>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="Foto">Nueva Foto (opcional):</label>
+                <input type="file" id="foto" name="Foto" accept=".jpg,.jpeg,.png,.gif">
+            </div>
+
+            <div class="form-group form-buttons">
+                <button type="submit" class="btn-submit">Actualizar Registro</button>
+            </div>
+        </form>
     </section>
 </main>
 
 <footer>
     <p>© 2024 TConsulting. Todos los derechos reservados.</p>
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    const deleteButtons = document.querySelectorAll('.btn-eliminar');
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const empleadoId = this.getAttribute('data-id');
-
-            Swal.fire({
-                text: "Seguro que quieres eliminar el registro, no podrás revertir esta acción.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = `?ID_Empleado=${empleadoId}`;
-                }
-            });
-        });
-    });
-
-    const nuevoEmpleadoButton = document.querySelector('.btn-nuevo');
-
-    if (nuevoEmpleadoButton) {
-        nuevoEmpleadoButton.addEventListener('click', function() {
-            window.location.href = 'v.nuevo.empleado.php';
-        });
-    }
-
-    function showEmployeePhoto(photoUrl) {
-        const modal = document.getElementById("photoModal");
-        const img = document.getElementById("employeePhoto");
-
-        if (photoUrl && photoUrl !== '../Imagenes/Sin Foto.jpeg') {
-            // Si la foto existe y no es la predeterminada, se asigna la ruta pasada
-            img.src = photoUrl;
-        } else {
-            // Si no existe una foto, se muestra la imagen predeterminada
-            img.src = '../Imagenes/Sin Foto.jpeg';
-        }
-
-        img.onload = function() {
-            modal.style.display = "flex"; // Mostrar modal después de que cargue la imagen
-        }
-
-        // Redimensionar la imagen al hacer clic sobre ella
-        img.addEventListener('click', function() {
-            if (img.classList.contains('large')) {
-                img.classList.remove('large'); // Vuelve al tamaño pequeño
-            } else {
-                img.classList.add('large'); // Agranda la imagen
-            }
-        });
-    }
-
-    function hideEmployeePhoto() {
-        const modal = document.getElementById("photoModal");
-        modal.style.display = "none";
-        const img = document.getElementById("employeePhoto");
-        img.src = ""; // Limpia la fuente de la imagen
-
-        // Asegúrate de restablecer el tamaño de la imagen cuando se cierre el modal
-        img.classList.remove('large');
-    }
-
-    function cerrarSesion() {
-        // Redirige al usuario a la página index.php
-        window.location.href = '../index.html';
-    }
-
-</script>
-
 </body>
 </html>
-
