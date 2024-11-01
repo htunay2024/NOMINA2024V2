@@ -9,7 +9,7 @@ body, html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    overflow: hidden; /* Evita el desplazamiento */
+    overflow: hidden;
 }
 
 .login-aside {
@@ -17,20 +17,20 @@ body, html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 350px; /* Ajusta el ancho según sea necesario */
+    width: 350px;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    opacity: 0; /* Comienza invisible */
-    visibility: hidden; /* Oculta el aside */
+    opacity: 0;
+    visibility: hidden;
     z-index: 1000;
 }
 
 .login-aside.active {
-    opacity: 1; /* Muestra el aside */
+    opacity: 1;
     visibility: visible;
 }
 
