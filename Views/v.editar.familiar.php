@@ -1,10 +1,10 @@
 <?php
-require_once '../Controller/Familiar_C.php';
-require_once '../Controller/Empleado_C.php';
+require_once '../Controller/C_Familiar.php';
+require_once '../Controller/C_Empleado.php';
 
 
-$familiarODB = new Familiar_C();
-$empleadoODB = new Empleado_C();
+$familiarODB = new C_Familiar();
+$empleadoODB = new C_Empleado();
 
 $idFamiliar = $_GET['ID_Familiar'] ?? null;
 
