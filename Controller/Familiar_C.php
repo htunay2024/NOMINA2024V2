@@ -1,11 +1,9 @@
 <?php
-
 require_once 'SQLSRVConnector.php';
 require_once '../Model/Familiar.php';
 
 class Familiar_C {
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
         if ($this->connection === null) {
@@ -14,9 +12,8 @@ class Familiar_C {
     }
 
     public function getAll(): array {
-        $query = "EXEC ListarFamiliares"; // Supongo que tienes un procedimiento almacenado para mostrar familiares
+        $query = "EXEC ListarFamiliares";
         $result = $this->connection->query($query);
-
         $familiares = [];
         while ($row = $result->fetch()) {
             $familiar = new Familiar(
@@ -29,7 +26,6 @@ class Familiar_C {
             );
             array_push($familiares, $familiar);
         }
-
         return $familiares;
     }
 
@@ -37,10 +33,9 @@ class Familiar_C {
         $query = "EXEC BuscarFamiliar @IDFamiliar = :IDFamiliar";
         try {
             $stmt = $this->connection->prepare($query);
-            $stmt->bindParam(':IDFamiliar', $idFamiliar, PDO::PARAM_INT); // Cambiado $id a $idFamiliar
+            $stmt->bindParam(':IDFamiliar', $idFamiliar, PDO::PARAM_INT);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
             if ($row) {
                 return new Familiar(
                     $row['IDFamiliar'],
@@ -55,7 +50,6 @@ class Familiar_C {
             error_log("Failed to execute query: " . $e->getMessage());
             return null;
         }
-
         return null;
     }
 
@@ -67,7 +61,6 @@ class Familiar_C {
               @Relacion = :Relacion, 
               @FechaNacimiento = :FechaNacimiento, 
               @ID_Empleado = :ID_Empleado";
-
         try {
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':IDFamiliar', $idFamiliar, PDO::PARAM_INT);
@@ -76,7 +69,6 @@ class Familiar_C {
             $stmt->bindParam(':Relacion', $relacion);
             $stmt->bindParam(':FechaNacimiento', $fechaNacimiento);
             $stmt->bindParam(':ID_Empleado', $idEmpleado, PDO::PARAM_INT);
-
             return $stmt->execute();
         } catch (PDOException $e) {
             error_log("Failed to execute update: " . $e->getMessage());
@@ -86,30 +78,25 @@ class Familiar_C {
 
     public function insert($familiar) {
         try {
-            // Extraer los atributos del objeto familiar
+            // Extraer los atributos
             $nombre = $familiar->getNombre();
             $apellido = $familiar->getApellido();
             $relacion = $familiar->getRelacion();
             $fechaNacimiento = $familiar->getFechaNacimiento();
             $idEmpleado = $familiar->getIdEmpleado();
-
-            // Definir la consulta SQL usando parámetros posicionales
+            // Consulta SQL usando parámetros posicionales
             $query = "EXEC InsertarFamiliar @Nombre = ?, 
                                         @Apellido = ?, 
                                         @Relacion = ?, 
                                         @FechaNacimiento = ?, 
                                         @ID_Empleado = ?";
-
-            // Preparar la declaración SQL
             $stmt = $this->connection->prepare($query);
-
             // Vincular los parámetros con sus tipos correctos
             $stmt->bindParam(1, $nombre, PDO::PARAM_STR);
             $stmt->bindParam(2, $apellido, PDO::PARAM_STR);
             $stmt->bindParam(3, $relacion, PDO::PARAM_STR);
             $stmt->bindParam(4, $fechaNacimiento, PDO::PARAM_STR);
             $stmt->bindParam(5, $idEmpleado, PDO::PARAM_INT);
-
             // Ejecutar la declaración y devolver el resultado
             return $stmt->execute();
         } catch (PDOException $e) {
