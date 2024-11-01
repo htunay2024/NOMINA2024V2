@@ -30,7 +30,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
     <aside id="sideMenu">
         <nav>
             <ul>
-                <li><a href="index.php">INICIO</a></li>
+                <li><a href="index1.php">INICIO</a></li>
                 <li>
                     <a href="#">RECURSOS HUMANOS</a>
                     <ul>
