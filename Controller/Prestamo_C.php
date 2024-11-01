@@ -4,9 +4,8 @@ require_once '../Model/Prestamo.php';
 
 class Prestamo_C {
     private $connection;
-
     public function __construct() {
-        $this->connection = SQLSRVConnector::getInstance()->getConnection(); // Obtener la conexión
+        $this->connection = SQLSRVConnector::getInstance()->getConnection();
         if ($this->connection === null) {
             die("Error: No se pudo establecer la conexión con la base de datos.");
         }
@@ -31,12 +30,10 @@ class Prestamo_C {
                 $row['NombreCompleto'],
                 $row['Cuenta_Contable']
             );
-            // Agregar el objeto prestamo al array
             $prestamos[] = $prestamo;
         }
         return $prestamos;
     }
-
 
     // Obtener un préstamo por ID
     public function getById($id) {
@@ -50,7 +47,6 @@ class Prestamo_C {
 
     // Insertar un nuevo préstamo
     public function insert($prestamo) {
-        // Prepara la consulta
         $query = "EXEC InsertarPrestamo @Monto = ?, @Cuotas = ?, @FechaInicio = ?, @Cuotas_Restantes = ?, @Saldo_Pendiente = ?, @Cancelado = ?, @ID_Empleado = ?";
         $stmt = $this->connection->prepare($query);
 
@@ -70,7 +66,6 @@ class Prestamo_C {
         $stmt->bindParam(6, $cancelado);
         $stmt->bindParam(7, $idEmpleado);
 
-        // Ejecuta la consulta
         $stmt->execute();
     }
 
@@ -79,7 +74,6 @@ class Prestamo_C {
         $query = "EXEC ModificarPrestamo @ID_Prestamo = ?, @Monto = ?, @Cuotas = ?, @FechaInicio = ?, @Cuotas_Restantes = ?, @Saldo_Pendiente = ?, @Cancelado = ?, @ID_Empleado = ?, @ID_Poliza = ?";
         $stmt = $this->connection->prepare($query);
 
-        // Obtención de los parámetros del objeto $prestamo
         $idPrestamo = $prestamo->getIdPrestamo();
         $monto = $prestamo->getMonto();
         $cuotas = $prestamo->getCuotas();
@@ -88,9 +82,8 @@ class Prestamo_C {
         $saldoPendiente = $prestamo->getSaldoPendiente();
         $cancelado = $prestamo->getCancelado();
         $idEmpleado = $prestamo->getIdEmpleado();
-        $idPoliza = $prestamo->getIdPoliza();  // Asegúrate de que este valor sea correcto
-
-        // Vinculación de parámetros
+        $idPoliza = $prestamo->getIdPoliza();
+        
         $stmt->bindParam(1, $idPrestamo);
         $stmt->bindParam(2, $monto);
         $stmt->bindParam(3, $cuotas);
@@ -101,7 +94,6 @@ class Prestamo_C {
         $stmt->bindParam(8, $idEmpleado);
         $stmt->bindParam(9, $idPoliza);
 
-        // Ejecuta la consulta
         $stmt->execute();
     }
 
@@ -114,10 +106,9 @@ class Prestamo_C {
         $query->bindParam(':idPrestamo', $idPrestamo, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
-
         // Verificar si el resultado es válido
         if ($result) {
-            // Crear un objeto Prestamo y asignar los valores obtenidos de la base de datos
+
             $prestamo = new Prestamo();
             $prestamo->setMonto($result['Monto']);
             $prestamo->setCuotasRestantes($result['Cuotas_Restantes']);
@@ -126,15 +117,11 @@ class Prestamo_C {
             $prestamo->setIdPoliza($result['ID_Poliza']);
             $prestamo->setCuentaContable($result['Cuenta_Contable']);
             $prestamo->setNombreCompleto($result['NombreCompleto']);
-
             return $prestamo;
         } else {
-            return null; // Si no hay resultados, devolver null
+            return null;
         }
-
-        // Si no se encuentra un resultado, devolvemos null
         return null;
     }
-
 }
 ?>
