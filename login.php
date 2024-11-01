@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Controller/Usuario_C.php';
+require_once 'Controller/UsuarioOBD.php';
 require_once 'Model/Usuario.php';
 
 $error = '';
@@ -13,14 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!preg_match('/^[a-zA-Z0-9]*$/', $usuario) || !preg_match('/^[a-zA-Z0-9]*$/', $password)) {
         $error = "Usuario o contraseña contienen caracteres no permitidos.";
     } else {
-        $usuarioODB = new Usuario_C();
+        $usuarioODB = new UsuarioOBD();
         $usuarioAutenticado = $usuarioODB->login($usuario, $password);
 
         if ($usuarioAutenticado) {
             $_SESSION['usuario_id'] = $usuarioAutenticado->getidUsuario();
             $_SESSION['usuario_nombre'] = $usuarioAutenticado->getCorreo();
             $_SESSION['rol'] = $usuarioAutenticado->getIdRol();
-            header("Location: Views/index.php"); // Redirección actualizada
+            header("Location: Views/indexAdmon.php");
             exit();
         } else {
             $error = "Usuario o contraseña incorrectos.";
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="square"></div>
 <div class="content">
-    <h1>Bienvenido a TConsulting</h1>
+    <h1>Bienvenido</h1>
 </div>
 
 <!-- Aside para el formulario de inicio de sesión -->
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($error): ?>
         <div class="error-message"><?php echo $error; ?></div>
     <?php endif; ?>
-    <form action="" method="POST">
+    <form action="" method="POST"> <!-- Cambia aquí para que apunte a la misma página -->
         <div class="form-group">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required pattern="[a-zA-Z0-9]*">
