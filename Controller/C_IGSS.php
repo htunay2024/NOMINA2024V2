@@ -1,11 +1,9 @@
 <?php
-
 require_once '../Model/IGSS.php';
 require_once 'SQLSRVConnector.php';
 class C_IGSS
 {
     private $connection;
-
     public function __construct()
     {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
@@ -19,7 +17,6 @@ class C_IGSS
         $sql = "EXEC MostrarIGSS";
         $stmt = $this->connection->query($sql);
         $registrosIGSS = [];
-
         while ($row = $stmt->fetch()) {
             $registrosIGSS[] = new IGSS(
                 $row['Mes'],
@@ -31,7 +28,6 @@ class C_IGSS
                 $row['NombreCompleto']
             );
         }
-
         return $registrosIGSS;
     }
 }
