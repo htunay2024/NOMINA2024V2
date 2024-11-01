@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body, html {
     height: 100%;
     width: 100%;
@@ -11,76 +5,44 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    overflow: hidden; /* Evita el desplazamiento durante la animación */
-}
-
-body {
-    background-image: url('../Imagenes/Empresa2.jpg');
+    background-image: url('../Imagenes/nominailustracion.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden; /* Evita el desplazamiento */
 }
 
-/* Estilo para el aside */
 .login-aside {
-    position: fixed; /* Fijo para que cubra toda la pantalla */
-    top: 0;
-    left: -300px; /* Comienza fuera de la pantalla */
-    width: 300px; /* Ancho del aside */
-    height: 100%; /* Alto completo */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo transparente */
-    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px; /* Ajusta el ancho según sea necesario */
     padding: 20px;
-    transition: left 0.3s ease; /* Transición suave */
-    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0; /* Comienza invisible */
+    visibility: hidden; /* Oculta el aside */
+    z-index: 1000;
 }
 
-/* Activo cuando se muestra el aside */
 .login-aside.active {
-    left: 0; /* Mueve el aside a la vista */
+    opacity: 1; /* Muestra el aside */
+    visibility: visible;
 }
 
-/* Fondo animado debajo del texto */
 .content {
     text-align: center;
     color: white;
-    position: relative; /* Necesario para posicionar el pseudo-elemento */
-    padding: 20px;
     z-index: 1;
-    opacity: 0; /* Comienza invisible */
-    animation: slideToCenter 1s ease-out forwards;
-}
-
-/* Pseudo-elemento para el fondo */
-.content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
-    border-radius: 8px;
-    transform: scale(0.9); /* Tamaño del cuadro ligeramente más pequeño que el contenido */
-    z-index: -1; /* Asegura que esté detrás del texto */
-    opacity: 0;
-    animation: slideToCenter 1s ease-out forwards;
-}
-
-/* Animación para que el contenido se desplace hasta el centro */
-@keyframes slideToCenter {
-    from {
-        transform: translateY(-100vh); /* Comienza fuera de la pantalla */
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0); /* Termina en el centro */
-        opacity: 1;
-    }
+    padding: 20px;
 }
 
 .top-right-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     padding: 10px 15px;
@@ -91,25 +53,11 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    animation: bounceIn 1.2s ease;
+    z-index: 1000;
 }
 
 .top-right-button:hover {
     background-color: #ff3333;
-}
-
-@keyframes bounceIn {
-    0% {
-        transform: translateY(-100px);
-        opacity: 0;
-    }
-    50% {
-        transform: translateY(10px);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0);
-    }
 }
 
 /* Estilo del formulario */
