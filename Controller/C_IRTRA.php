@@ -4,21 +4,18 @@ require_once 'SQLSRVConnector.php';
 
 class C_IRTRA
 {
-
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
         if ($this->connection === null) {
             die("Error: No se pudo establecer la conexión con la base de datos.");
         }
     }
-
+    
     public function getAll() {
         $sql = "EXEC MostrarIrtra";
         $stmt = $this->connection->query($sql);
         $registrosIRTRA = [];
-
         while ($row = $stmt->fetch()) {
             $registrosIRTRA[] = new IRTRA(
                 $row['Mes'],
@@ -29,8 +26,6 @@ class C_IRTRA
                 $row['NombreCompleto']
             );
         }
-
         return $registrosIRTRA;
     }
-
 }
