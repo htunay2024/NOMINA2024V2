@@ -31,9 +31,7 @@
                 <li>
                     <a href="#">Pago de Nómina</a>
                     <ul>
-                        <li><a href="#">Pagos</a></li>
-                        <li><a href="#">Deducciones</a></li>
-                        <li><a href="#">Bonificaciones</a></li>
+                        <li><a href="v.nomina.php">Pagos</a></li>
                     </ul>
                 </li>
                 <li>
