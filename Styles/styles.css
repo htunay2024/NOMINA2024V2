@@ -1,7 +1,7 @@
-/* Estilos generales SEXO */
+/* Estilos generales*/
 body {
     font-family:'Times New Roman', sans-serif;
-    background-color: #ffcccc; /* Fondo de la página*/
+    background-color: #ffcccc;
     margin: 0;
     padding: 0;
 }
@@ -44,30 +44,30 @@ header h1 {
 }
 
 .menu-toggle.hidden {
-    display: none; /* Ocultar el botón cuando se aplica esta clase */
+    display: none;
 }
 
 #container {
-    display: flex; /* Usar flexbox para alinear el menú y el contenido */
-    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
-    position: relative; /* Necesario para el pseudo-elemento en main */
+    display: flex; 
+    min-height: 100vh; 
+    position: relative;
 }
 
 /* Estilo para el aside */
 aside {
     position: fixed;
-    left: -250px; /* Oculto inicialmente */
+    left: -250px; 
     top: 0;
     width: 250px;
     height: 100%;
-    background-color: #2980b9; /* Color de fondo del menú */
-    transition: left 0.3s ease; /* Transición suave para mostrar/ocultar el menú */
+    background-color: #2980b9;
+    transition: left 0.3s ease;
     z-index: 1000;
 }
 
 /* Estilo cuando el menú está visible */
 aside.active {
-    left: 0; /* Muestra el menú desplazándolo hacia la derecha */
+    left: 0;
 }
 
 aside nav ul {
@@ -77,7 +77,7 @@ aside nav ul {
 }
 
 aside nav ul li {
-    position: relative; /* Necesario para que el submenú sea posicionado dentro del contenedor principal */
+    position: relative;
 }
 
 aside nav ul li a {
@@ -102,7 +102,7 @@ aside nav ul li ul {
     left: 100%;
     top: 0;
     padding: 0;
-    background-color: #e3e852; /* Fondo del submenú */
+    background-color: #e3e852;
     z-index: 1000;
 }
 
@@ -114,7 +114,7 @@ aside nav ul li ul li a {
 }
 
 aside nav ul li ul li a:hover {
-    background-color: #5ac54a; /* Color de fondo al pasar el ratón sobre subelementos */
+    background-color: #5ac54a; 
 }
 
 /* Mostrar el submenú al hacer hover sobre el elemento principal */
@@ -126,11 +126,11 @@ main {
     padding: 2rem;
     max-width: 80%;
     margin: 0 auto;
-    transition: margin-left 0.3s ease; /* Transición suave para mover el contenido */
+    transition: margin-left 0.3s ease;
 }
 
 main.shifted {
-    margin-left: 250px; /* Desplaza el contenido cuando el menú está visible */
+    margin-left: 250px;
 }
 
 h2 {
@@ -172,27 +172,27 @@ table tbody tr:hover {
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 999; /* Asegura que el modal esté encima de otros elementos */
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal-content {
-    position: relative; /* Para posicionar el botón de cierre */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 90%; /* Máximo ancho del contenedor */
-    max-height: 90%; /* Máxima altura del contenedor */
+    max-width: 90%;
+    max-height: 90%;
 }
 
 .modal-content img {
-    max-width: none; /* Permitir que la imagen use su tamaño natural */
-    max-height: none; /* Permitir que la imagen use su tamaño natural */
-    display: block; /* Para eliminar espacio en línea adicional */
+    max-width: none;
+    max-height: none;
+    display: block;
 }
 
 .close {
@@ -251,7 +251,7 @@ table tbody tr:hover {
 
 .form-group {
     margin-bottom: 1rem;
-    width: 48%; /* Los campos ocupan menos de la mitad del ancho */
+    width: 48%;
 }
 
 .form-group label {
@@ -333,16 +333,16 @@ footer p {
 
 .btn-nuevo {
     position: fixed;
-    bottom: 20px; /* Distancia desde el borde inferior */
-    left: 20px; /* Distancia desde el borde izquierdo */
-    background-color: #4CAF50; /* Color verde */
+    bottom: 20px;
+    left: 20px;
+    background-color: #4CAF50;
     color: white;
-    padding: 15px 20px; /* Padding para tamaño medio */
+    padding: 15px 20px;
     font-size: 16px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    z-index: 1000; /* Asegura que esté por encima del contenido */
+    z-index: 1000;
 }
 
 .employee-button{
@@ -372,7 +372,7 @@ footer p {
     padding: 5px;
     position: absolute;
     z-index: 1;
-    bottom: 125%; /* Posicionar encima del campo */
+    bottom: 125%;
     left: 50%;
     margin-left: -100px;
     opacity: 0;
@@ -387,29 +387,29 @@ footer p {
 .error {
     color: red;
     font-size: 0.9em;
-    display: none; /* Ocultar inicialmente */
+    display: none;
 }
 
 /* Estilo inicial para que la imagen se muestre más pequeña */
 #employeePhoto {
-    max-width: 500px; /* Tamaño pequeño */
-    max-height: 500px; /* Tamaño pequeño */
-    transition: transform 0.3s ease; /* Transición suave al agrandarla */
+    max-width: 500px;
+    max-height: 500px;
+    transition: transform 0.3s ease;
 }
 
 #employeePhoto.large {
-    max-width: 500px; /* Tamaño grande cuando se agranda */
+    max-width: 500px; 
     max-height: 500px;
 }
 
 #photoModal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    background-color: rgba(0, 0, 0, 0.8); 
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -421,14 +421,14 @@ footer p {
 
 #listaArchivos {
     display: flex;
-    flex-direction: column; /* Organiza los archivos en una columna */
-    gap: 20px; /* Espacio entre cada archivo */
+    flex-direction: column;
+    gap: 20px; 
 }
 
 .archivo-container {
-    border: 1px solid #ccc; /* Borde alrededor de cada archivo */
-    padding: 10px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #ccc;
+    padding: 10px; 
+    border-radius: 5px; 
 }
 
 .acciones {
@@ -447,35 +447,33 @@ footer p {
 }
 
 .acciones .btn.btn-eliminar {
-    background-color: #dc3545; /* Color específico para el botón de eliminar */
+    background-color: #dc3545;
 }
 
 /* Estilos responsive */
 @media (max-width: 768px) {
     aside {
-        width: 200px; /* Reduce el ancho en pantallas pequeñas */
+        width: 200px;
     }
     main.shifted {
-        margin-left: 200px; /* Ajusta el margen en pantallas pequeñas */
+        margin-left: 200px;
     }
 
     .menu{
-        list-style-type: none; /* Elimina el estilo de la lista (viñeta) */
-        padding: 10px; /* Añade un poco de espacio alrededor del texto */
+        list-style-type: none;
+        padding: 10px;
     }
 
     .menu{
-        text-decoration: none; /* Elimina el subrayado del enlace */
-        color: #fff; /* Cambia el color del texto */
-        background-color: #0435fd; /* Fondo del botón */
-        padding: 8px 12px; /* Espaciado dentro del enlace */
-        border-radius: 5px; /* Bordes redondeados */
+        text-decoration: none; 
+        color: #fff; 
+        background-color: #0435fd; 
+        padding: 8px 12px;
+        border-radius: 5px; 
     }
 
     .menu{
-        background-color: #0070cc; /* Color de fondo al pasar el ratón */
-        color: #ffffff; /* Color del texto al pasar el ratón */
+        background-color: #0070cc; 
+        color: #ffffff; 
     }
-
 }
-
