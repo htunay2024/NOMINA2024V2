@@ -17,47 +17,118 @@
 
 <div id="container">
     <aside id="sideMenu">
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">Recursos Humanos</a>
-                    <ul>
-                        <li><a href="v.empleados.php">Empleado</a></li>
-                        <li><a href="v.usuarios.php">Usuario</a></li>
-                        <li><a href="v.Expediente.php">Expediente</a></li>
-                        <li><a href="v.ausencias.php">Permiso</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Pago de Nómina</a>
-                    <ul>
-                        <li><a href="v.nomina.php">Pagos</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Contabilidad</a>
-                    <ul>
-                        <li><a href="v.horasextras.php">Horas Extras</a></li>
-                        <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
-                        <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
-                        <li><a href="v.Poliza.php">Polizas Contables</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Prestamos</a>
-                    <ul>
-                        <li><a href="v.prestamo.php">Deuda de Prestamos</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Tienda Solidaria</a>
-                    <ul>
-                        <li><a href="v.tienda.php">Registros de Tienda</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+    <nav>
+        <ul>
+            <li><a href="index.php">INICIO</a></li>
+            <li>
+                <a href="#">RECURSOS HUMANOS</a>
+                <ul>
+                    <li><a href="v.empleados.php">EMPLEADO</a>
+                        <ul>
+                            <li><a href="v.nuevo.empleado.php">CREAR EMPLEADO</a></li>
+                            <li><a href="v.editar.empleado.php">EDITAR EMPLEADO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.usuarios.php">USUARIOS</a>
+                        <ul>
+                            <li><a href="v.nuevo.usuario.php">CREAR USUARIO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.Expediente.php">EXPEDIENTES</a>
+                        <ul>
+                            <li><a href="v.nuevo.expediente.php">AGREGAR DOCUMENTO</a></li>
+                            <li><a href="v.editar.expediente.php">EDITAR DOCUMENTO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.ausencias.php">PERMISOS</a>
+                        <ul>
+                            <li><a href="v.nueva.ausencia.php">NUEVO PERMISO</a></li>
+                            <li><a href="v.editar.ausencia.empleado.php">EDITAR PERMISO</a></li>
+                            <li><a href="V_AusenciaAutorizacion.php">AUTORIZAR PERMISO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.familiar.php">FAMILIAR</a>
+                        <ul>
+                            <li><a href="v.nuevo.familiar.php">NUEVO FAMILIAR</a></li>
+                            <li><a href="v.editar.familiar.php">EDITAR FAMILIAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.HistorialPagos.php">HISTORIAL DE PAGOS</a></li>
+                    <li><a href="v.IGSS.php">IGSS</a></li>
+                    <li><a href="v.INTECAP.php">INTECAP</a></li>
+                    <li><a href="v.IRTRA.php">IRTRA</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">NOMINA</a>
+                <ul>
+                    <li><a href="v.nomina.php">PAGOS</a>
+                        <ul>
+                            <li><a href="v.RealizarPago.php">REALIZAR PAGO</a></li>
+                            <li><a href="v.nuevo.pago.php">NUEVO PAGO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">DEDUCCIONES</a></li>
+                    <li><a href="#">BONIFICACIONES</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">CONTABILIDAD</a>
+                <ul>
+                    <li><a href="v.horasextras.php">HORAS EXTRAS</a>
+                        <ul>
+                            <li><a href="v.nueva.horasextras.php">NUEVO REGISTRO</a></li>
+                            <li><a href="v.editar.horasextras.php">EDITAR REGISTRO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.produccion.php">BONIFICACIONES POR PRODUCCIÓN</a>
+                        <ul>
+                            <li><a href="v.nueva.produccion.php">NUEVA BONIFICACIÓN</a></li>
+                            <li><a href="v.editar.produccion.php">EDITAR BONIFICACIÓN</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.comisiones.php">COMISIONES SOBRE VENTAS</a>
+                        <ul>
+                            <li><a href="v.nueva.comision.php">NUEVA COMISIÓN</a></li>
+                            <li><a href="v.editar.comisiones.php">EDITAR COMISIÓN</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="v.Poliza.php">PÓLIZAS CONTABLES</a>
+                        <ul>
+                            <li><a href="PolizaProduccion.php">PÓLIZA PRODUCCIÓN</a></li>
+                            <li><a href="v.editar.poliza.php">EDITAR PÓLIZA</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">PRÉSTAMOS</a>
+                <ul>
+                    <li><a href="v.prestamo.php">DEUDAS DE PRÉSTAMOS</a>
+                        <ul>
+                            <li><a href="v.nuevo.prestamo.php">NUEVO PRÉSTAMO</a></li>
+                            <li><a href="v.editar.prestamo.php">EDITAR PRÉSTAMO</a></li>
+                            <li><a href="v.HistorialPagosPrestamos.php">HISTORIAL DE PAGOS</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">TIENDA SOLIDARIA</a>
+                <ul>
+                    <li><a href="v.tienda.php">REGISTROS DE TIENDA</a>
+                        <ul>
+                            <li><a href="v.compra.php">COMPRA</a></li>
+                            <li><a href="v.editar.compra.php">EDITAR COMPRA</a></li>
+                            <li><a href="v.HistorialCompras.php">HISTORIAL DE COMPRAS</a></li>
+                            <li><a href="v.PagoTienda.php">PAGO DE TIENDA</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</aside>
 
     <main>
         <h2>Bienvenido al Portal de Gestion de Nomina</h2>
