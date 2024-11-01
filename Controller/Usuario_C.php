@@ -17,7 +17,7 @@ class Usuario_C {
         $result = $this->connection->query($query);
         $usuarios = [];
         while ($row = $result->fetch()) {
-            $usuario = new Usuario($row['ID_Usuario'], $row['Correo'], '', $row['ID_Rol'], $row['Rol'], $row['Estado']);
+            $usuario = new Usuario($row['ID_Usuario'], null, $row['Correo'], null, null, null, $row['ID_Rol']);
             array_push($usuarios, $usuario);
         }
         return $usuarios;
@@ -32,15 +32,15 @@ class Usuario_C {
         $stmt->bindParam(1, $id);
         $stmt->execute();
         $row = $stmt->fetch();
-        return new Usuario($row['ID_Usuario'], $row['Correo'], $row['Contrasena'], $row['ID_Rol'], $row['Rol'], $row['Estado']);
+        return new Usuario($row['ID_Usuario'], null, $row['Correo'], $row['Contrasena'], null, null, $row['ID_Rol']);
     }
 
     public function insert($usuario) {
         $query = "INSERT INTO Usuario (Correo, Contrasena, ID_Rol, Estado) VALUES (?, ?, ?, ?)";
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(1, $usuario->getCorreo());
-        $stmt->bindParam(2, $usuario->getContrasena());
-        $stmt->bindParam(3, $usuario->getID_Rol());
+        $stmt->bindParam(2, $usuario->getPassword());
+        $stmt->bindParam(3, $usuario->getIdRol());
         $stmt->bindParam(4, $usuario->getEstado());
         $stmt->execute();
     }
@@ -49,10 +49,10 @@ class Usuario_C {
         $query = "UPDATE Usuario SET Correo = ?, Contrasena = ?, ID_Rol = ?, Estado = ? WHERE ID_Usuario = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(1, $usuario->getCorreo());
-        $stmt->bindParam(2, $usuario->getContrasena());
-        $stmt->bindParam(3, $usuario->getID_Rol());
+        $stmt->bindParam(2, $usuario->getPassword());
+        $stmt->bindParam(3, $usuario->getIdRol());
         $stmt->bindParam(4, $usuario->getEstado());
-        $stmt->bindParam(5, $usuario->getID_Usuario());
+        $stmt->bindParam(5, $usuario->getIdUsuario());
         $stmt->execute();
     }
 
@@ -63,7 +63,6 @@ class Usuario_C {
         $stmt->execute();
     }
 
-    // Método de Login para autenticar el usuario
     public function login($usuario, $password) {
         $query = "EXEC ValidarUsuario :usuario, :password";
         $stmt = $this->connection->prepare($query);
@@ -73,17 +72,15 @@ class Usuario_C {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            // Si se encuentra una coincidencia, se devuelve el objeto Usuario
             return new Usuario(
                 $row['ID_Usuario'],
                 $row['Usuario'],
-                null, // No se devuelve la contraseña por seguridad
+                null,
                 $row['Empresa'],
                 $row['ID_Rol'],
                 $row['ID_Empleado']
             );
         } else {
-            // Si no hay coincidencia, devuelve null
             return null;
         }
     }
