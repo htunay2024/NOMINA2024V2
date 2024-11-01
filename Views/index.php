@@ -62,8 +62,8 @@
     </aside>
 
     <main>
-        <h2>Políticas de la Empresa</h2>
-        <p>Ella si te ama</p>
+        <h2>Bienvenido al Portal de Gestion de Nomina</h2>
+        <p>Accede a tus recursos y gestiona tus acciones desde aquí.</p>
     </main>
 </div>
 
