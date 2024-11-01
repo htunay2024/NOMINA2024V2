@@ -63,8 +63,11 @@
         </nav>
     </aside>
 
-Bienvenido al Portal del Empleado
-Accede a tus recursos y gestiona tus solicitudes desde aquí.
+    <main>
+        <h2>Bienvenido al Portal del Empleado</h2>
+        <p>Accede a tus recursos y gestiona tus solicitudes desde aquí.</p>
+    </main>
+</div>
 
 <footer>
     <p>&copy; 2024-2024 T Consulting S.A. Todos los derechos reservados.</p>
