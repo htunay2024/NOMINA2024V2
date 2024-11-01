@@ -3,8 +3,8 @@ require_once '../Controller/C_Familiar.php';
 require_once '../Controller/C_Empleado.php';
 
 
-$familiarODB = new C_Familiar();
-$empleadoODB = new C_Empleado();
+$familiarODB = new FamiliarODB();
+$empleadoODB = new EmpleadoODB();
 
 $idFamiliar = $_GET['ID_Familiar'] ?? null;
 
