@@ -4,9 +4,8 @@ require_once '../Model/Produccion.php';
 
 class Produccion_C {
     private $connection;
-
     public function __construct() {
-        $this->connection = SQLSRVConnector::getInstance()->getConnection(); // Obtén la conexión aquí
+        $this->connection = SQLSRVConnector::getInstance()->getConnection();
         if ($this->connection === null) {
             die("Error: No se pudo establecer la conexión con la base de datos.");
         }
@@ -54,17 +53,15 @@ class Produccion_C {
         $query = "EXEC ModificarProduccion ?, ?, ?, ?, ?";
         $stmt = $this->connection->prepare($query);
         // Asignar los parámetros a la consulta
-        $stmt->bindParam(1, $idProduccion);          // ID de Producción
-        $stmt->bindParam(2, $piezasElaboradas);      // Piezas Elaboradas
-        $stmt->bindParam(3, $bonificacion);          // Bonificación calculada
-        $stmt->bindParam(4, $idEmpleado);            // ID de Empleado
-        $stmt->bindParam(5, $descripcion);           // Descripción
+        $stmt->bindParam(1, $idProduccion);
+        $stmt->bindParam(2, $piezasElaboradas);  
+        $stmt->bindParam(3, $bonificacion);
+        $stmt->bindParam(4, $idEmpleado);
+        $stmt->bindParam(5, $descripcion);
 
-        // Ejecutar la consulta
         $stmt->execute();
     }
-
-
+    
     public function insertarProduccionYPoliza($piezasElaboradas, $bonificacion, $idEmpleado, $descripcion) {
         $query = "EXEC InsertarProduccionYPoliza ?, ?, ?, ?";
         $stmt = $this->connection->prepare($query);
@@ -85,10 +82,8 @@ class Produccion_C {
     public function getProduccionesByPoliza(int $idPoliza): array {
         $query = "EXEC BuscarProduccionPorPoliza @ID_Poliza = :idPoliza";
         $stmt = $this->connection->prepare($query);
-
         $stmt->bindValue(':idPoliza', $idPoliza, PDO::PARAM_INT);
         $stmt->execute();
-
         $producciones = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $produccion = new Produccion(
@@ -102,7 +97,6 @@ class Produccion_C {
             );
             array_push($producciones, $produccion);
         }
-
         return $producciones;
     }
 }
