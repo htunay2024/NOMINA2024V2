@@ -1,9 +1,9 @@
 <?php
 
-require_once '../Model/Empleado.php';
-require_once '../Data/EmpleadoODB.php';
+require_once '../Modelos/Empleado.php';
+require_once '../Control/Empleado_C.php';
 
-$empleadoODB = new EmpleadoODB();
+$empleadoODB = new Empleado_C();
 
 // Verificar si se ha enviado un ID_Empleado para eliminar
 if (isset($_GET['ID_Empleado'])) {
