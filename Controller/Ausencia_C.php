@@ -1,11 +1,9 @@
 <?php
-
 require_once '../Model/Ausencia.php';
 require_once 'SQLSRVConnector.php';
 
 class Ausencia_C {
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
         if ($this->connection === null) {
@@ -18,7 +16,6 @@ class Ausencia_C {
         $sql = "EXEC MostrarAusencias";
         $stmt = $this->connection->query($sql);
         $ausencias = [];
-
         while ($row = $stmt->fetch()) {
             $ausencias[] = new Ausencia(
                 $row['ID_Solicitud'],
@@ -34,7 +31,6 @@ class Ausencia_C {
                 $row['NombreCompleto']
             );
         }
-
         return $ausencias;
     }
 
@@ -59,11 +55,9 @@ class Ausencia_C {
                 $row['ID_Empleado']
             );
         }
-
         return null;
     }
-
-
+    
     // Insertar una nueva ausencia
     public function insert($ausencia) {
         try {
@@ -71,7 +65,6 @@ class Ausencia_C {
             $cuentaSalario = null; // Enviar como NULL
             $descuento = null; // Enviar como NULL
             $estado = 'PENDIENTE'; // Estado por defecto si faltan valores
-
             // Obtener valores del objeto ausencia
             $fechaSolicitud = $ausencia->getFechaSolicitud();
             $fechaInicio = $ausencia->getFechaInicio();
@@ -102,13 +95,9 @@ class Ausencia_C {
         }
     }
 
-
-
-
     // Actualizar una ausencia existente
     public function update($idAusencia, $idEmpleado, $fechaSolicitud, $fechaInicio, $fechaFin, $motivo, $descripcion, $estado, $cuentaSalario, $descuento)
     {
-
         // Imprimir las fechas para depuración
         echo "Fecha Solicitud: $fechaSolicitud\n";
         echo "Fecha Inicio: $fechaInicio\n";
@@ -152,11 +141,9 @@ class Ausencia_C {
             $errorInfo = $stmt->errorInfo();
             throw new Exception("Error al actualizar la ausencia: " . $errorInfo[2]);
         }
-
         return true; // Devuelve verdadero si la actualización fue exitosa
     }
-
-
+    
     // Eliminar una ausencia por su ID_Solicitud
     public function delete($idSolicitud) {
         $sql = "EXEC BorrarAusencia :idSolicitud";
@@ -164,8 +151,5 @@ class Ausencia_C {
         $stmt->bindParam(':idSolicitud', $idSolicitud);
         $stmt->execute();
     }
-
     }
-
 ?>
-
