@@ -49,8 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <button class="top-right-button" onclick="toggleLoginAside()">INICIAR SESIÓN</button>
 <div class="square"></div>
 <div class="content">
-    <h1>Bienvenido a TConsulting</h1>
-    <p>Tu Solución en Gestión de nómina</p>
+
 </div>
 
 <!-- Aside para el formulario de inicio de sesión -->
