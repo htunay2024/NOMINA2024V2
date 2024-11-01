@@ -4,7 +4,6 @@ require_once '../Model/Tienda.php';
 
 class Tienda_C {
     private $connection;
-
     public function __construct() {
         $this->connection = SQLSRVConnector::getInstance()->getConnection(); // Obtener la conexión
         if ($this->connection === null) {
@@ -12,7 +11,7 @@ class Tienda_C {
         }
     }
 
-    // Obtener todas las tiendas con saldo pendiente
+    // Obtener todas las tiendas
     public function getAllTiendas() : array {
         $query = "EXEC MostrarTodasLasTiendas";
         $result = $this->connection->query($query);
@@ -28,7 +27,6 @@ class Tienda_C {
                 $row['NombreCompleto'],
                 $row['Cuenta_Contable']
             );
-            // Agregar el objeto tienda al array
             $tiendas[] = $tienda;
         }
         return $tiendas;
@@ -37,14 +35,12 @@ class Tienda_C {
     public function getDatosCompra($idCompra) {
         $query = "EXEC ObtenerDatosCompra @ID_Compra = :idCompra";
         $stmt = $this->connection->prepare($query);
-
         $stmt->bindValue(':idCompra', $idCompra, PDO::PARAM_INT);
         $stmt->execute();
-
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return new Tienda(
                 $row['ID_Compra'],
-                $row['Cuotas'], // Asegúrate de que esta columna exista en tu SP
+                $row['Cuotas'],
                 $row['Max_Credit'],
                 $row['Saldo_Pendiente'],
                 $row['Credito_Disponible'],
@@ -53,9 +49,9 @@ class Tienda_C {
                 $row['Cuenta_Contable']
             );
         }
-
-        return null; // Retornar null si no se encuentra ninguna compra
+        return null;
     }
+    
     public function getCompraPorID($Compra) {
         try {
             $query = "EXEC MostrarComprasPorID @Compra = :Compra";
@@ -63,7 +59,6 @@ class Tienda_C {
             $stmt->bindValue(':Compra', $Compra, PDO::PARAM_INT);
             $stmt->execute();
 
-            // Cambiamos a un array para obtener los datos
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 return [
                     'Compra' => $row['Compra'],
@@ -74,14 +69,13 @@ class Tienda_C {
                     'Cuenta_Contable' => $row['Cuenta_Contable']
                 ];
             }
-            return null; // Retornar null si no se encuentra ninguna compra
+            return null;
         } catch (PDOException $e) {
             error_log("Error al obtener la compra: " . $e->getMessage());
             return null;
         }
     }
 
-    // Modificar un pago en tienda
     public function updatePagoTienda($idPagoTienda, $pago, $idCompra, $idEmpleado) {
         $query = "EXEC ModificarPagoTienda @ID_Pago_Tienda = ?, @Pago = ?, @ID_Compra = ?, @ID_Empleado = ?";
         $stmt = $this->connection->prepare($query);
@@ -92,7 +86,6 @@ class Tienda_C {
         $stmt->execute();
     }
 
-    // Insertar un nuevo pago y actualizar la tienda
     public function insertPagoYActualizarTienda($pago, $idCompra, $idEmpleado) {
         $query = "EXEC InsertarPagoYActualizarTienda @Pago = ?, @ID_Compra = ?, @ID_Empleado = ?";
         $stmt = $this->connection->prepare($query);
@@ -102,7 +95,6 @@ class Tienda_C {
         $stmt->execute();
     }
 
-    // Insertar una nueva compra y actualizar la tienda
     public function insertCompraYActualizarTienda($fecha, $total, $idCompra, $idEmpleado) {
         $query = "EXEC InsertarCompraYActualizarTienda @Fecha = ?, @Total = ?, @ID_Compra = ?, @ID_Empleado = ?";
         $stmt = $this->connection->prepare($query);
@@ -113,7 +105,6 @@ class Tienda_C {
         $stmt->execute();
     }
 
-    // Modificar una compra existente
     public function updateCompra($compra, $fecha, $total, $idCompra, $idEmpleado) {
         $query = "EXEC ModificarCompra @Compra = ?, @Fecha = ?, @Total = ?, @ID_Compra = ?, @ID_Empleado = ?";
         $stmt = $this->connection->prepare($query);
@@ -130,9 +121,8 @@ class Tienda_C {
             $query = $this->connection->prepare("EXEC MostrarComprasPorEmpleado :ID_Empleado");
             $query->bindParam(':ID_Empleado', $ID_Empleado, PDO::PARAM_INT);
             $query->execute();
-            return $query->fetchAll(PDO::FETCH_OBJ); // Retorna un array de objetos con los resultados
+            return $query->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
-            // Manejo de errores
             echo "Error: " . $e->getMessage();
             return false;
         }
@@ -143,9 +133,8 @@ class Tienda_C {
             $query = $this->connection->prepare("EXEC MostrarPagosPorEmpleado :ID_Empleado");
             $query->bindParam(':ID_Empleado', $ID_Empleado, PDO::PARAM_INT);
             $query->execute();
-            return $query->fetchAll(PDO::FETCH_OBJ); // Retorna un array de objetos con los resultados
+            return $query->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
-            // Manejo de errores
             echo "Error: " . $e->getMessage();
             return false;
         }
