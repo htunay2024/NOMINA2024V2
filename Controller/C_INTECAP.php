@@ -1,12 +1,10 @@
 <?php
-
 require_once '../Model/INTECAP.php';
 require_once 'SQLSRVConnector.php';
 
 class C_INTECAP
 {
     private $connection;
-
     public function __construct()
     {
         $this->connection = SQLSRVConnector::getInstance()->getConnection();
@@ -19,7 +17,6 @@ class C_INTECAP
         $sql = "EXEC MostrarIntecap";
         $stmt = $this->connection->query($sql);
         $intecapList = [];
-
         while ($row = $stmt->fetch()) {
             $intecapList[] = new Intecap(
                 $row['Mes'],
@@ -30,8 +27,6 @@ class C_INTECAP
                 $row['NombreCompleto']
             );
         }
-
         return $intecapList;
     }
-
 }
