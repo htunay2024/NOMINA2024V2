@@ -1,68 +1,93 @@
 <?php
-
 class Usuario {
-    private $ID_Usuario;
-    private $Correo;
-    private $Contrasena;
-    private $ID_Rol;
+    private $idUsuario;
+    private $usuario;
+    private $correo;
+    private $password;
+    private $empresa;
+    private $idEmpleado;
+    private $idRol;
+    private $NombreCompleto;
+
     private $Rol;
-    private $Estado;
 
-    public function __construct($ID_Usuario, $Correo, $Contrasena, $ID_Rol, $Rol, $Estado) {
-        $this->ID_Usuario = $ID_Usuario;
-        $this->Correo = $Correo;
-        $this->Contrasena = $Contrasena;
-        $this->ID_Rol = $ID_Rol;
+    public function __construct($idUsuario = null, $usuario = null, $correo = null, $password = null, $empresa = null, $idEmpleado = null, $idRol = null, $NombreCompleto = null, $Rol = null) {
+        $this->idUsuario = $idUsuario; // Puede ser null para nuevas inserciones
+        $this->usuario = $usuario;
+        $this->correo = $correo;
+        $this->password = $password;
+        $this->empresa = $empresa;
+        $this->idEmpleado = $idEmpleado; // ID de la relación con el empleado
+        $this->idRol = $idRol; // ID de la relación con el rol
+        $this->NombreCompleto = $NombreCompleto;
         $this->Rol = $Rol;
-        $this->Estado = $Estado;
     }
 
-    public function getID_Usuario() {
-        return $this->ID_Usuario;
-    }
-
-    public function getCorreo() {
-        return $this->Correo;
-    }
-
-    public function getContrasena() {
-        return $this->Contrasena;
-    }
-
-    public function getID_Rol() {
-        return $this->ID_Rol;
+    // Getters
+    public function getIdUsuario() {
+        return $this->idUsuario;
     }
 
     public function getRol() {
         return $this->Rol;
     }
 
-    public function getEstado() {
-        return $this->Estado;
+
+    public function getNombreCompleto() {
+        return $this->NombreCompleto;
     }
 
-    public function setID_Usuario($ID_Usuario) {
-        $this->ID_Usuario = $ID_Usuario;
+    public function getUsuario() {
+        return $this->usuario;
     }
 
-    public function setCorreo($Correo) {
-        $this->Correo = $Correo;
+    public function getCorreo() {
+        return $this->correo;
     }
 
-    public function setContrasena($Contrasena) {
-        $this->Contrasena = $Contrasena;
+    public function getPassword() {
+        return $this->password;
     }
 
-    public function setID_Rol($ID_Rol) {
-        $this->ID_Rol = $ID_Rol;
+    public function getEmpresa() {
+        return $this->empresa;
     }
 
-    public function setEstado($Estado) {
-        $this->Estado = $Estado;
+    public function getIdEmpleado() {
+        return $this->idEmpleado;
     }
 
-    public function __toString() {
-        return "ID_Usuario: $this->ID_Usuario, Correo: $this->Correo, Contrasena: $this->Contrasena, ID_Rol: $this->ID_Rol,
-        Rol: $this->Rol, Estado: $this->Estado";
+    public function getIdRol() {
+        return $this->idRol;
+    }
+
+    // Setters
+    public function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
+    }
+
+    public function setUsuario($usuario) {
+        $this->usuario = $usuario;
+    }
+
+    public function setCorreo($correo) {
+        $this->correo = $correo;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
+    }
+
+    public function setEmpresa($empresa) {
+        $this->empresa = $empresa;
+    }
+
+    public function setIdEmpleado($idEmpleado) {
+        $this->idEmpleado = $idEmpleado;
+    }
+
+    public function setIdRol($idRol) {
+        $this->idRol = $idRol;
     }
 }
+?>
