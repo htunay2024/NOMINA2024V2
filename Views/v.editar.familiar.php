@@ -4,7 +4,7 @@ require_once '../Controller/C_Empleado.php';
 
 
 $familiarODB = new FamiliarODB();
-$empleadoODB = new EmpleadoODB();
+$empleadoODB = new C_Empleado();
 
 $idFamiliar = $_GET['ID_Familiar'] ?? null;
 
