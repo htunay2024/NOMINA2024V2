@@ -20,7 +20,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'generate') {
 <body>
 <header>
     <h1>Generación de Nómina</h1>
-    <button onclick="cerrarSesion()" class="btn btn-eliminar">Cerrar Sesión</button>
+
 </header>
 <main>
     <section class="Nomina">
