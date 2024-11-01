@@ -20,7 +20,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'generate') {
 <body>
 <header>
     <h1>Generación de Nómina</h1>
-
+<button onclick="window.location.href='Views/index.php'" class="btn">Ir a Inicio</button>
 </header>
 <main>
     <section class="Nomina">
