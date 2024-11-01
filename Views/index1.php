@@ -27,6 +27,7 @@
                         <li><a href="v.usuarios.php">Usuario</a></li>
                         <li><a href="v.Expediente.php">Expediente</a></li>
                         <li><a href="v.ausencias.php">Permiso</a></li>
+                        <li><a href="v.nuevo.departamento.php">Crear Departamento</a></li> <!-- Nueva opción -->
                     </ul>
                 </li>
                 <li>
