@@ -31,6 +31,8 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
         <nav>
             <ul>
                 <li><a href="index1.php">INICIO</a></li>
+                
+                <!-- Sección de Recursos Humanos -->
                 <li>
                     <a href="#">RECURSOS HUMANOS</a>
                     <ul>
@@ -70,7 +72,8 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
                         <li><a href="v.IRTRA.php">IRTRA</a></li>
                     </ul>
                 </li>
-                <!-- Más secciones exclusivas del administrador aquí -->
+                
+                <!-- Sección de Nómina -->
                 <li>
                     <a href="#">NOMINA</a>
                     <ul>
@@ -80,11 +83,68 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
                                 <li><a href="v.nuevo.pago.php">NUEVO PAGO</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">DEDUCCIONES</a></li>
-                        <li><a href="#">BONIFICACIONES</a></li>
                     </ul>
                 </li>
-                <!-- Continuar con más secciones -->
+                
+                <!-- Sección de Contabilidad -->
+                <li>
+                    <a href="#">CONTABILIDAD</a>
+                    <ul>
+                        <li><a href="v.horasextras.php">HORAS EXTRAS</a>
+                            <ul>
+                                <li><a href="v.nueva.horasextras.php">NUEVO REGISTRO</a></li>
+                                <li><a href="v.editar.horasextras.php">EDITAR REGISTRO</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="v.produccion.php">BONIFICACIONES POR PRODUCCIÓN</a>
+                            <ul>
+                                <li><a href="v.nueva.produccion.php">NUEVA BONIFICACIÓN</a></li>
+                                <li><a href="v.editar.produccion.php">EDITAR BONIFICACIÓN</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="v.comisiones.php">COMISIONES SOBRE VENTAS</a>
+                            <ul>
+                                <li><a href="v.nueva.comision.php">NUEVA COMISIÓN</a></li>
+                                <li><a href="v.editar.comisiones.php">EDITAR COMISIÓN</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="v.Poliza.php">PÓLIZAS CONTABLES</a>
+                            <ul>
+                                <li><a href="PolizaProduccion.php">PÓLIZA PRODUCCIÓN</a></li>
+                                <li><a href="v.editar.poliza.php">EDITAR PÓLIZA</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- Sección de Préstamos -->
+                <li>
+                    <a href="#">PRÉSTAMOS</a>
+                    <ul>
+                        <li><a href="v.prestamo.php">DEUDAS DE PRÉSTAMOS</a>
+                            <ul>
+                                <li><a href="v.nuevo.prestamo.php">NUEVO PRÉSTAMO</a></li>
+                                <li><a href="v.editar.prestamo.php">EDITAR PRÉSTAMO</a></li>
+                                <li><a href="v.HistorialPagosPrestamos.php">HISTORIAL DE PAGOS</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- Sección de Tienda Solidaria -->
+                <li>
+                    <a href="#">TIENDA SOLIDARIA</a>
+                    <ul>
+                        <li><a href="v.tienda.php">REGISTROS DE TIENDA</a>
+                            <ul>
+                                <li><a href="v.compra.php">COMPRA</a></li>
+                                <li><a href="v.editar.compra.php">EDITAR COMPRA</a></li>
+                                <li><a href="v.HistorialCompras.php">HISTORIAL DE COMPRAS</a></li>
+                                <li><a href="v.PagoTienda.php">PAGO DE TIENDA</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </aside>
