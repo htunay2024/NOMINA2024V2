@@ -3,19 +3,15 @@ class SQLSRVConnector
 {
     private static $instance = null;
     private $connection;
-
     // Detalles de la conexión
     private $host;          // Nombre del servidor
     private $username;      // Cambia si usas autenticación SQL
     private $password;      // Cambia si usas autenticación SQL
     private $database;      // Nombre de la base de datos
-
     // Constructor privado para establecer la conexión PDO
     private function __construct()
     {
-        // Cargar el archivo .env
         $this->loadEnv(__DIR__ . '/../.env');
-
         // Obtener las variables de entorno
         $this->host = 'den1.mssql8.gear.host';
         $this->database = 'tconsulting';
@@ -25,10 +21,8 @@ class SQLSRVConnector
         try {
             // Configura la cadena de conexión DSN
             $dsn = "sqlsrv:Server={$this->host};Database={$this->database}";
-
             // Crea una instancia PDO usando el DSN y las credenciales
             $this->connection = new PDO($dsn, $this->username, $this->password);
-
             // Configura el modo de errores para PDO
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
@@ -36,8 +30,6 @@ class SQLSRVConnector
             die("Database Connection Failed: " . $e->getMessage());
         }
     }
-
-    // Método para cargar el archivo .env
     private function loadEnv($file)
     {
         if (file_exists($file)) {
@@ -47,8 +39,7 @@ class SQLSRVConnector
             }
         }
     }
-
-    // Método estático para obtener una única instancia de la conexión (Singleton)
+    // Método estático
     public static function getInstance()
     {
         if (!self::$instance) {
@@ -56,7 +47,6 @@ class SQLSRVConnector
         }
         return self::$instance;
     }
-
     // Método público para obtener la conexión activa
     public function getConnection()
     {
