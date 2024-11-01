@@ -17,45 +17,7 @@ $intecapList = $intecapODB->getAll();
 <header>
     <h1>Gestión de INTECAP</h1>
 </header>
-<nav>
-    <ul>
-        <li>
-            <a href="#">RRHH</a>
-            <ul>
-                <li><a href="v.empleados.php">Empleados</a></li>
-                <li><a href="v.Expediente.php">Expedientes</a></li>
-                <li><a href="v.ausencias.php">Permisos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Nómina</a>
-            <ul>
-                <li><a href="v.nomina.php">Pagos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Contabilidad</a>
-            <ul>
-                <li><a href="v.Poliza.php">Polizas Contables</a></li>
-                <li><a href="v.horasextras.php">Horas Extras</a></li>
-                <li><a href="v.comisiones.php">Comisiones sobre ventas</a></li>
-                <li><a href="v.produccion.php">Bonificaciones por producción</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">BANTRAB</a>
-            <ul>
-                <li><a href="v.prestamo.php">Prestamos</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Tienda</a>
-            <ul>
-                <li><a href="v.tienda.php">Registro de Tienda</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+
 <main>
     <section class="INTECAP">
         <h2>Registros de INTECAP</h2>
