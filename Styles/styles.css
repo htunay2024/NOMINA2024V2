@@ -1,15 +1,21 @@
-/* Estilos generales */
+/* Estilos generales*/
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ecf0f1;
+    font-family:'Times New Roman', sans-serif;
+    background-color: #ffcccc; /* Fondo de la página*/
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #34495e;
+    background-color: #2980b9;
+    padding: 15px;
     color: white;
-    padding: 10px 0;
+    text-align: center;
+}
+
+.header .li{
+    background-color: #27ae60;
+    color: white;
 }
 
 header h1 {
@@ -18,155 +24,147 @@ header h1 {
 }
 
 /* Estilos comunes para el nav */
-nav {
-    background-color: #2c3e50; /* Fondo oscuro del menú */
-    padding: 0;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    position: relative;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: white;
-    padding: 15px 20px;
-    text-decoration: none;
-    display: block;
+.menu-toggle {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #d272f8;
     cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 1001;
 }
 
-nav ul li:hover > a {
-    background-color: #1abc9c; /* Color al hacer hover sobre los enlaces */
+.menu-toggle:hover {
+    color: #ffcccc; /* Color de hover para botón */
 }
 
-nav ul li ul {
+.menu-toggle.hidden {
+    display: none; /* Ocultar el botón cuando se aplica esta clase */
+}
+
+#container {
+    display: flex; /* Usar flexbox para alinear el menú y el contenido */
+    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
+    position: relative; /* Necesario para el pseudo-elemento en main */
+}
+
+/* Estilo para el aside */
+aside {
+    position: fixed;
+    left: -250px; /* Oculto inicialmente */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #2980b9; /* Color de fondo del menú */
+    transition: left 0.3s ease; /* Transición suave para mostrar/ocultar el menú */
+    z-index: 1000;
+}
+
+/* Estilo cuando el menú está visible */
+aside.active {
+    left: 0; /* Muestra el menú desplazándolo hacia la derecha */
+}
+
+aside nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside nav ul li {
+    position: relative; /* Necesario para que el submenú sea posicionado dentro del contenedor principal */
+}
+
+aside nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #f7f9fc;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: #2980b9;
+}
+
+aside nav ul li a:hover {
+    background-color: #5ac54a;
+}
+
+/* Submenú oculto por defecto */
+aside nav ul li ul {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #34495e; /* Fondo oscuro del submenú */
+    left: 100%;
+    top: 0;
     padding: 0;
-    list-style: none;
-    z-index: 1;
-    min-width: 200px;
+    background-color: #e3e852; /* Fondo del submenú */
+    z-index: 1000;
 }
 
-nav ul li:hover > ul {
-    display: block; /* Muestra el submenú al pasar el mouse */
+aside nav ul li ul li a {
+    width: 200px;
+    padding: 10px 15px;
+    font-size: 16px;
+    text-transform: none;
 }
 
-nav ul li ul li {
-    width: 100%;
-    margin: 0;
+aside nav ul li ul li a:hover {
+    background-color: #5ac54a; /* Color de fondo al pasar el ratón sobre subelementos */
 }
 
-nav ul li ul li a {
-    padding: 10px;
-    color: white;
+/* Mostrar el submenú al hacer hover sobre el elemento principal */
+aside nav ul li:hover > ul {
+    display: block;
 }
-
-nav ul li ul li a:hover {
-    background-color: #1abc9c; /* Hover en los elementos del submenú */
-}
-
 
 main {
     padding: 2rem;
     max-width: 80%;
     margin: 0 auto;
+    transition: margin-left 0.3s ease; /* Transición suave para mover el contenido */
+}
+
+main.shifted {
+    margin-left: 250px; /* Desplaza el contenido cuando el menú está visible */
 }
 
 h2 {
-    color: #2c3e50;
-    border-bottom: 2px solid #bdc3c7;
+    color: #2980b9; /* Título principal*/
+    border-bottom: 2px solid #2980b9; /* Borde en tono */
     padding-bottom: 10px;
 }
 
 .table-container {
-    width: 100%; /* O el ancho deseado */
-    text-align: left; /* Asegura que el contenido esté alineado a la izquierda */
-    padding-left: 0; /* Ajusta el padding a la izquierda */
-}
-
-/* Estilo general para la tabla */
-table {
-    max-width: 800px;
-    border-collapse: collapse;
-    background-color: white;
-    margin-bottom: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    border-radius: 10px; /* Bordes redondeados */
-    overflow: hidden; /* Esconde desbordes en la tabla */
-}
-
-/* Estilo para el encabezado */
-table thead {
-    background-color: #2c3e50;
-    color: white;
-    text-transform: uppercase; /* Texto en mayúsculas */
-    letter-spacing: 1px; /* Espacio entre letras */
-}
-
-/* Celdas del encabezado y el cuerpo */
-table th, table td {
-    padding: 12px;
+    width: 100%;
     text-align: left;
-    border-bottom: 1px solid #bdc3c7;
-    font-size: 15px; /* Tamaño de fuente legible */
-    overflow: hidden; /* Evita el desbordamiento */
-    text-overflow: ellipsis; /* Agrega "..." si el texto es muy largo */
-    white-space: nowrap; /* Evita que el texto se corte en varias líneas */
-}
-.text-wrap {
-    white-space: normal; /* Permite el salto de línea */
-    word-wrap: break-word; /* Rompe palabras largas */
-    width: 100px; /* Ajusta el ancho según tus necesidades */
+    padding-left: 0;
 }
 
-table td.nombre, table td.apellido {
-    max-width: 200px; /* Ajusta según tu necesidad */
-    white-space: nowrap; /* Evitar que se divida en varias líneas */
-    overflow: hidden; /* Oculta el texto excedente */
-    text-overflow: ellipsis; /* Muestra "..." si el texto es muy largo */
+table {
+    background-color: white; /* fondo para la tabla */
+    box-shadow: 0 2px 8px rgb(4, 169, 228); /* Sombra*/
 }
 
-/* Filas pares del cuerpo */
+table thead {
+    background-color: #04e6ed; /* Encabezado de la tabla*/
+}
+
 table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #ffe6e6; /* Filas pares*/
 }
 
-/* Efecto hover en las filas */
 table tbody tr:hover {
-    background-color: #dcdde1;
-    transition: background-color 0.3s ease; /* Transición suave */
-}
-
-/* Para pantallas pequeñas: agregar desplazamiento horizontal */
-@media (max-width: 768px) {
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap; /* Evita que el contenido se corte */
-    }
-
-    table th, table td {
-        white-space: normal; /* Permitir que el texto largo envuelva en pantallas pequeñas */
-    }
+    background-color: #ffcccc; /* Efecto hover*/
 }
 
 .botones-acciones {
     display: flex; /* Aplica flexbox para alinear los botones */
-    gap: 10px; /* Espacio entre los botones, ajusta según tu preferencia */
+    gap: 5px; /* Espacio entre los botones, ajusta según tu preferencia */
 }
 
 .photo-modal {
@@ -210,9 +208,9 @@ table tbody tr:hover {
 .btn {
     border: none;
     text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    margin-right: 5px;
+    padding: 5px 7px;
+    border-radius: 10px;
+    margin-right: 2px;
     display: inline-block;
     cursor: pointer;
 }
@@ -229,6 +227,11 @@ table tbody tr:hover {
 
 .btn-agregar {
     background-color: #2980b9;
+    color: white;
+}
+
+.btn-Familiar{
+    background-color: #c561ed;
     color: white;
 }
 
@@ -285,7 +288,7 @@ table tbody tr:hover {
 }
 
 footer {
-    background-color: #34495e;
+    background-color: #2980b9;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -310,22 +313,6 @@ footer p {
     border-radius: 5px;
     cursor: pointer;
 }
-/* Estilos para el botón de cerrar sesión */
-.btn-cerrar {
-    background-color: #ff5555; /* Color de fondo del botón */
-    color: #ffffff; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px 15px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de la fuente */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s; /* Transición suave para el cambio de color */
-}
-
-.btn-cerrar:hover {
-    background-color: #ff3333; /* Color de fondo al pasar el mouse */
-}
-
 
 .btn-nuevo-pago:hover {
     background-color: #45a049;
@@ -334,9 +321,9 @@ footer p {
 .btn-buscar {
     background-color: #062fd5;
     color: #f2f4fa;
-    padding: 10px 20px;
+    padding: 5px 7px;
+    border-radius: 10px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -359,12 +346,12 @@ footer p {
 }
 
 .employee-button{
-    background-color: #04bff6;
+    background-color: #0459f6;
     color: white;
     border: none;
     text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 5px 7px;
+    border-radius: 10px;
     margin-right: 5px;
     display: inline-block;
     cursor: pointer;
@@ -461,5 +448,34 @@ footer p {
 
 .acciones .btn.btn-eliminar {
     background-color: #dc3545; /* Color específico para el botón de eliminar */
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    aside {
+        width: 200px; /* Reduce el ancho en pantallas pequeñas */
+    }
+    main.shifted {
+        margin-left: 200px; /* Ajusta el margen en pantallas pequeñas */
+    }
+
+    .menu{
+        list-style-type: none; /* Elimina el estilo de la lista (viñeta) */
+        padding: 10px; /* Añade un poco de espacio alrededor del texto */
+    }
+
+    .menu{
+        text-decoration: none; /* Elimina el subrayado del enlace */
+        color: #fff; /* Cambia el color del texto */
+        background-color: #0435fd; /* Fondo del botón */
+        padding: 8px 12px; /* Espaciado dentro del enlace */
+        border-radius: 5px; /* Bordes redondeados */
+    }
+
+    .menu{
+        background-color: #0070cc; /* Color de fondo al pasar el ratón */
+        color: #ffffff; /* Color del texto al pasar el ratón */
+    }
+
 }
 
