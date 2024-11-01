@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Connector_C.php';
+require_once 'SQLSRVConnector.php';
 require_once '../Modelos/Empleado.php';
 require_once '../Modelos/Departamento.php';
 
