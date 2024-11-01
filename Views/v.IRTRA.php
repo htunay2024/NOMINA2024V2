@@ -1,9 +1,9 @@
 <?php
 
 require_once '../Model/IRTRA.php';
-require_once '../Controller/IRTRA_C.php';
+require_once '../Controller/IRTRAODB.php';
 
-$irtraODB = new IRTRA_C();
+$irtraODB = new IRTRAODB();
 
 // Obtener todos los registros de IRTRA para mostrar en la tabla
 $registrosIRTRA = $irtraODB->getAll();
