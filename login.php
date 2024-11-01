@@ -1,7 +1,5 @@
 <?php
 session_start();
-require_once 'Controller/UsuarioODB.php';
-require_once 'Model/Usuario.php';
 
 $error = '';
 
@@ -13,15 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!preg_match('/^[a-zA-Z0-9]*$/', $usuario) || !preg_match('/^[a-zA-Z0-9]*$/', $password)) {
         $error = "Usuario o contraseña contienen caracteres no permitidos.";
     } else {
-        $usuarioODB = new UsuarioODB();
-        $usuarioAutenticado = $usuarioODB->login($usuario, $password);
-
-        if ($usuarioAutenticado) {
-            $_SESSION['usuario_id'] = $usuarioAutenticado->getidUsuario();
-            $_SESSION['usuario_nombre'] = $usuarioAutenticado->getCorreo();
-            $_SESSION['rol'] = $usuarioAutenticado->getIdRol();
-            $_SESSION['rol'] = $usuarioAutenticado->getIdRol();
-            header("Location: Views/indexAdmon.php");
+        // Validar los usuarios "administrador" y "empleado" con sus contraseñas
+        if ($usuario === 'administrador' && $password === '1234') {
+            // Configurar la sesión y redirigir al index1.php para Administrador
+            $_SESSION['usuario_nombre'] = $usuario;
+            $_SESSION['rol'] = 'administrador';
+            header("Location: Views/index1.php");
+            exit();
+        } elseif ($usuario === 'empleado' && $password === '5678') {
+            // Configurar la sesión y redirigir al index2.php para Empleado
+            $_SESSION['usuario_nombre'] = $usuario;
+            $_SESSION['rol'] = 'empleado';
+            header("Location: Views/index2.php");
             exit();
         } else {
             $error = "Usuario o contraseña incorrectos.";
@@ -58,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($error): ?>
         <div class="error-message"><?php echo $error; ?></div>
     <?php endif; ?>
-    <form action="" method="POST"> <!-- Cambia aquí para que apunte a la misma página -->
+    <form action="" method="POST">
         <div class="form-group">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required pattern="[a-zA-Z0-9]*">
