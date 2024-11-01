@@ -37,23 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Principal</title>
     <link rel="stylesheet" href="Styles/login.css">
-    <script>
-        // Función para mostrar u ocultar el aside de inicio de sesión
-        function toggleLoginAside() {
-            const loginAside = document.querySelector('.login-aside');
-            loginAside.classList.toggle('active');
-        }
-    </script>
 </head>
 <body>
-<button class="top-right-button" onclick="toggleLoginAside()">INICIAR SESIÓN</button>
 <div class="square"></div>
 <div class="content">
 
 </div>
 
 <!-- Aside para el formulario de inicio de sesión -->
-<aside class="login-aside">
+<aside class="login-aside active"> <!-- Clase "active" añadida para mostrar el formulario de inmediato -->
     <h2>Iniciar Sesión</h2>
     <?php if ($error): ?>
         <div class="error-message"><?php echo $error; ?></div>
