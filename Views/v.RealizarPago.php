@@ -3,7 +3,7 @@
 require_once '../Controller/C_Poliza.php';
 require_once '../Controller/C_Prestamo.php';
 require_once '../Model/HistorialPagosPrestamos.php';
-require_once '../Controller/C_HistorialPagos.php';
+require_once '../Controller/HistorialPagosPrestamos_C.php';
 require_once '../Controller/C_Empleado.php';
 
 $idPrestamo = $_GET['ID_Prestamo'] ?? null;
@@ -34,7 +34,7 @@ $nuevoSaldo = $saldoPendiente - $monto;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Registrar_Pago'])) {
     $fecha = date('Y-m-d'); // Fecha actual del sistema
 
-    $historialPagosODB = new HistorialPagosPrestamosODB();
+    $historialPagosODB = new HistorialPagosPrestamos_C();
 
     // Crear objeto de pago
     $nuevoPago = new HistorialPagosPrestamos(
