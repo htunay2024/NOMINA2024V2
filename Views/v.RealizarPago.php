@@ -1,10 +1,10 @@
 <?php
 
-require_once '../Controller/C_Poliza.php';
-require_once '../Controller/C_Prestamo.php';
+require_once '../Controller/Poliza_C.php';
+require_once '../Controller/Prestamo_C.php';
 require_once '../Model/HistorialPagosPrestamos.php';
 require_once '../Controller/HistorialPagosPrestamos_C.php';
-require_once '../Controller/C_Empleado.php';
+require_once '../Controller/Empleado_C.php';
 
 $idPrestamo = $_GET['ID_Prestamo'] ?? null;
 
