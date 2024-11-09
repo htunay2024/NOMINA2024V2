@@ -33,7 +33,6 @@ $prestamos = $prestamoODB->getAll();
     <img src="../Imagenes/T%20Consulting.jpg" alt="Logo de T Consulting" style="height: 50px; vertical-align: middle;">
     <h1>Gestión de Préstamos</h1>
     <button onclick="window.location.href='v.nuevo.prestamo.php'" class="btn btn-nuevo">Nuevo Préstamo</button>
-    <button onclick="window.location.href='v.HistorialPagosPrestamos.php'" class="btn btn-historial">Historial de Pagos</button>
     <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
 </header>
     <aside id="sideMenu">
