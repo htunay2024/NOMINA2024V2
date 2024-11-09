@@ -190,14 +190,12 @@ $prestamos = $prestamoODB->getAll();
             <?php endforeach; ?>
             </tbody>
         </table>
-
+    </section>
         <div class="botones-acciones">
             <button onclick="window.location.href='v.nuevo.prestamo.php'" class="btn btn-nuevo">Nuevo Préstamo</button>
             <button onclick="window.location.href='v.editar.prestamo.php'" class="btn btn-editar">Editar Préstamo</button>
             <button onclick="window.location.href='v.HistorialPagosPrestamos.php'" class="btn btn-historial">Historial de Pagos</button>
         </div>
-
-    </section>
 </main>
 
 <footer>
