@@ -1,10 +1,10 @@
 <?php
 
-require_once '../Controller/C_Poliza.php';
-require_once '../Controller/C_Prestamo.php';
+require_once '../Data/PolizaODB.php';
+require_once '../Data/PrestamoODB.php';
 require_once '../Model/HistorialPagosPrestamos.php';
-require_once '../Controller/C_HistorialPagos.php';
-require_once '../Controller/C_Empleado.php';
+require_once '../Data/HistorialPagosPrestamosODB.php';
+require_once '../Data/EmpleadoODB.php';
 
 $idPrestamo = $_GET['ID_Prestamo'] ?? null;
 
@@ -55,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Registrar_Pago'])) {
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
