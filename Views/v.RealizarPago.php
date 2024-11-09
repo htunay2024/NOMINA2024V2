@@ -12,7 +12,7 @@ $monto = $noCuota = $saldoPendiente = $nombreEmpleado = $idPoliza = $idEmpleado 
 
 // Verificar si se obtuvo el ID_Prestamo y buscar los datos asociados
 if ($idPrestamo) {
-    $prestamoODB = new PrestamoODB();
+    $prestamoODB = new Prestamo_C();
     $prestamo = $prestamoODB->getPagoPorPrestamoId($idPrestamo); // Obtener datos del préstamo mediante el ID_Prestamo
     if ($prestamo) {
         $monto = $prestamo->getMonto();
