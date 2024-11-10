@@ -1,33 +1,24 @@
 <?php
-
 require_once '../Model/Prestamo.php';
 require_once '../Controller/C_Prestamo.php';
-
 $prestamoODB = new PrestamoODB();
 
-// Verificar si se ha enviado un ID_Prestamo para eliminar
 if (isset($_GET['ID_Prestamo'])) {
     $idPrestamo = $_GET['ID_Prestamo'];
-
-    // Redirigir con un parámetro de éxito
     header('Location: ' . $_SERVER['PHP_SELF'] . '?action=deleted');
     exit();
 }
-
 // Obtener todos los préstamos para mostrar en la tabla
 $prestamos = $prestamoODB->getAll();
-
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Lista de Préstamos</title>
     <link rel="stylesheet" href="../Styles/styles.css">
 </head>
-
 <body>
 <header>
     <img src="../Imagenes/T%20Consulting.jpg" alt="Logo de T Consulting" style="height: 50px; vertical-align: middle;">
@@ -192,22 +183,17 @@ $prestamos = $prestamoODB->getAll();
             </tbody>
         </table>
     </section>
-
 </main>
-
 <footer>
     <p>© 2024 TConsulting. Todos los derechos reservados.</p>
 </footer>
-
 <script>
     const nuevoPrestamoButton = document.querySelector('.btn-nuevo');
-
     if (nuevoPrestamoButton) {
         nuevoPrestamoButton.addEventListener('click', function() {
             window.location.href = 'v.nuevo.prestamo.php';
         });
     }
-
     function toggleMenu() {
         const sideMenu = document.querySelector('aside');
         const mainContent = document.querySelector('main');
@@ -215,6 +201,5 @@ $prestamos = $prestamoODB->getAll();
         mainContent.classList.toggle('shifted');
     }
 </script>
-
 </body>
 </html>
