@@ -1,5 +1,4 @@
 <?php
-
 require_once '../Data/PolizaODB.php';
 require_once '../Data/PrestamoODB.php';
 require_once '../Model/HistorialPagosPrestamos.php';
@@ -7,56 +6,35 @@ require_once '../Data/HistorialPagosPrestamosODB.php';
 require_once '../Data/EmpleadoODB.php';
 
 $idPrestamo = $_GET['ID_Prestamo'] ?? null;
-
 $monto = $noCuota = $saldoPendiente = $nombreEmpleado = $idPoliza = $idEmpleado = $cuentaContable = null;
 
-// Verificar si se obtuvo el ID_Prestamo y buscar los datos asociados
 if ($idPrestamo) {
-    $prestamoODB = new PrestamoODB();
-    $prestamo = $prestamoODB->getPagoPorPrestamoId($idPrestamo); // Obtener datos del préstamo mediante el ID_Prestamo
+    $prestamo = (new PrestamoODB())->getPagoPorPrestamoId($idPrestamo);
     if ($prestamo) {
-        $monto = $prestamo->getMonto();
-        $noCuota = $prestamo->getCuotasRestantes();
-        $saldoPendiente = $prestamo->getSaldoPendiente();
-        $idEmpleado = $prestamo->getIdEmpleado();
-        $idPoliza = $prestamo->getIdPoliza();
-        $cuentaContable = $prestamo->getCuentaContable();
-
-        // Obtener el nombre del empleado
-        $nombreEmpleado = $prestamo->getNombreCompleto(); // Concatenamos nombre y apellido del empleado
+        [$monto, $noCuota, $saldoPendiente, $idEmpleado, $idPoliza, $cuentaContable, $nombreEmpleado] = [
+            $prestamo->getMonto(), $prestamo->getCuotasRestantes(), $prestamo->getSaldoPendiente(),
+            $prestamo->getIdEmpleado(), $prestamo->getIdPoliza(), $prestamo->getCuentaContable(),
+            $prestamo->getNombreCompleto()
+        ];
     }
 }
 
-// Calcular nuevo saldo
 $nuevoSaldo = $saldoPendiente - $monto;
 
-// Si se envió el formulario para registrar el pago
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Registrar_Pago'])) {
-    $fecha = date('Y-m-d'); // Fecha actual del sistema
-
-    $historialPagosODB = new HistorialPagosPrestamosODB();
-
-    // Crear objeto de pago
+    $fecha = date('Y-m-d');
     $nuevoPago = new HistorialPagosPrestamos(
         null, $fecha, $monto, $noCuota, $nuevoSaldo, $idEmpleado, $idPoliza, $idPrestamo, null, $cuentaContable
     );
 
-    // Verificar si el objeto fue creado correctamente
-    if ($nuevoPago) {
-        // Insertar el nuevo pago
-        $result = $historialPagosODB->insert($nuevoPago);
-        if ($result) {
-            header("Location: v.prestamo.php?action=created");
-            exit(); // Termina el script después de la redirección
-        } else {
-            header("Location: v.prestamo.php?action=error");
-            exit();
-        }
+    if ($nuevoPago && (new HistorialPagosPrestamosODB())->insert($nuevoPago)) {
+        header("Location: v.prestamo.php?action=created");
+    } else {
+        header("Location: v.prestamo.php?action=error");
     }
+    exit();
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">
