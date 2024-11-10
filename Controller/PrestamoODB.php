@@ -11,8 +11,7 @@ class PrestamoODB {
             die("Error: No se pudo establecer la conexión con la base de datos.");
         }
     }
-
-    // Obtener todos los préstamos
+    //todos los préstamos
     public function getAll() : array {
         $query = "EXEC MostrarTodosLosPrestamos";
         $result = $this->connection->query($query);
@@ -31,14 +30,12 @@ class PrestamoODB {
                 $row['NombreCompleto'],
                 $row['Cuenta_Contable']
             );
-            // Agregar el objeto prestamo al array
             $prestamos[] = $prestamo;
         }
         return $prestamos;
     }
-
-
-    // Obtener un préstamo por ID
+    
+    //préstamo por ID
     public function getById($id) {
         $query = "EXEC ObtenerPrestamoYPoliza @ID_Prestamo = ?";
         $stmt = $this->connection->prepare($query);
@@ -47,10 +44,8 @@ class PrestamoODB {
         $row = $stmt->fetch();
         return new Prestamo($row['ID_Prestamo'], $row['Monto'], $row['Cuotas'], $row['FechaInicio'], $row['Cuotas_Restantes'], $row['Saldo_Pendiente'], $row['Cancelado'], $row['ID_Empleado'], $row['ID_Poliza']);
     }
-
-    // Insertar un nuevo préstamo
+    
     public function insert($prestamo) {
-        // Prepara la consulta
         $query = "EXEC InsertarPrestamo @Monto = ?, @Cuotas = ?, @FechaInicio = ?, @Cuotas_Restantes = ?, @Saldo_Pendiente = ?, @Cancelado = ?, @ID_Empleado = ?";
         $stmt = $this->connection->prepare($query);
 
@@ -69,17 +64,14 @@ class PrestamoODB {
         $stmt->bindParam(5, $saldoPendiente);
         $stmt->bindParam(6, $cancelado);
         $stmt->bindParam(7, $idEmpleado);
-
-        // Ejecuta la consulta
+        
         $stmt->execute();
     }
 
-    // Modificar un préstamo existente
     public function update($prestamo) {
         $query = "EXEC ModificarPrestamo @ID_Prestamo = ?, @Monto = ?, @Cuotas = ?, @FechaInicio = ?, @Cuotas_Restantes = ?, @Saldo_Pendiente = ?, @Cancelado = ?, @ID_Empleado = ?, @ID_Poliza = ?";
         $stmt = $this->connection->prepare($query);
 
-        // Obtención de los parámetros del objeto $prestamo
         $idPrestamo = $prestamo->getIdPrestamo();
         $monto = $prestamo->getMonto();
         $cuotas = $prestamo->getCuotas();
@@ -88,9 +80,8 @@ class PrestamoODB {
         $saldoPendiente = $prestamo->getSaldoPendiente();
         $cancelado = $prestamo->getCancelado();
         $idEmpleado = $prestamo->getIdEmpleado();
-        $idPoliza = $prestamo->getIdPoliza();  // Asegúrate de que este valor sea correcto
+        $idPoliza = $prestamo->getIdPoliza();
 
-        // Vinculación de parámetros
         $stmt->bindParam(1, $idPrestamo);
         $stmt->bindParam(2, $monto);
         $stmt->bindParam(3, $cuotas);
@@ -101,13 +92,11 @@ class PrestamoODB {
         $stmt->bindParam(8, $idEmpleado);
         $stmt->bindParam(9, $idPoliza);
 
-        // Ejecuta la consulta
         $stmt->execute();
     }
 
     public function getPagoPorPrestamoId($idPrestamo)
     {
-        // Consulta para ejecutar el procedimiento almacenado
         $query = "EXEC PagoPrestamo @ID_Prestamo = :idPrestamo";
         // Preparamos la consulta
         $query = $this->connection->prepare($query);
@@ -115,9 +104,7 @@ class PrestamoODB {
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
-        // Verificar si el resultado es válido
         if ($result) {
-            // Crear un objeto Prestamo y asignar los valores obtenidos de la base de datos
             $prestamo = new Prestamo();
             $prestamo->setMonto($result['Monto']);
             $prestamo->setCuotasRestantes($result['Cuotas_Restantes']);
@@ -126,15 +113,11 @@ class PrestamoODB {
             $prestamo->setIdPoliza($result['ID_Poliza']);
             $prestamo->setCuentaContable($result['Cuenta_Contable']);
             $prestamo->setNombreCompleto($result['NombreCompleto']);
-
             return $prestamo;
         } else {
-            return null; // Si no hay resultados, devolver null
+            return null;
         }
-
-        // Si no se encuentra un resultado, devolvemos null
         return null;
     }
-
 }
 ?>
